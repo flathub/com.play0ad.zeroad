@@ -13,9 +13,9 @@
 		"--socket=pulseaudio",
 		"--share=network",
 		"--device=dri",
-		"--filesystem=~/.local/share/0ad/:create",
-		"--filesystem=~/.config/0ad/:create",
-		"--filesystem=~/.cache/0ad/:create"
+		"--filesystem=xdg-data/0ad/:create",
+		"--filesystem=xdg-config/0ad/:create",
+		"--filesystem=xdg-cache/0ad/:create"
 	],
 	"modules":[
 		{
