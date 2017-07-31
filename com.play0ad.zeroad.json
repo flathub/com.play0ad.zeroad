@@ -35,9 +35,9 @@
 			],
 			"sources": [
 				{
-					"sha256": "686affff989ac2488f79a97b9479efb9f2abae035b5ed4d8226de6857933fd3b",
+					"sha256": "7bcc5caace97baa948931d712ea5f37038dbb1c5d89b43ad4def4ed7cb683332",
 					"type": "archive",
-					"url": "https://downloads.sourceforge.net/project/boost/boost/1.60.0/boost_1_60_0.tar.bz2"
+					"url": "https://downloads.sourceforge.net/project/boost/boost/1.64.0/boost_1_64_0.tar.bz2"
 				}
 			]
 		},
