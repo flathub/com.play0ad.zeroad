@@ -89,9 +89,7 @@
         "/include"
       ],
       "post-install": [
-        "mkdir --parents /app/share/games/0ad",
-        "mkdir --parents /app/lib/games/0ad",
-        "mkdir --parents /app/games",
+        "mkdir --parents /app/share/games/0ad /app/lib/games/0ad app/games",
         "mv binaries/data/l10n /app/share/games/0ad/",
         "mv binaries/system/pyrogenesis /app/bin/",
         "mv binaries/system/lib* /app/lib/",
