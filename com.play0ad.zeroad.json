@@ -97,7 +97,7 @@
         "mv binaries/system/lib* /app/lib/",
         "install -Dm644 build/resources/0ad.appdata.xml /app/share/metainfo/com.play0ad.zeroad.appdata.xml",
         "install -Dm644 build/resources/0ad.desktop /app/share/applications/com.play0ad.zeroad.desktop",
-        "install -Dm644 build/resources/0ad.png /app/share/icons/hicolor/com.play0ad.zeroad.appdata.xml",
+        "install -Dm644 build/resources/0ad.png /app/share/icons/hicolor/com.play0ad.zeroad.png",
         "mv build/resources/0ad.appdata.xml /app/share/metainfo/",
         "mv build/resources/0ad.desktop /app/share/applications/",
         "mv build/resources/0ad.png /app/share/icons/hicolor/128x128/apps",
