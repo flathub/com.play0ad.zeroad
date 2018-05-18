@@ -104,8 +104,7 @@
         "mv build/resources/0ad.appdata.xml /app/share/metainfo/",
         "mv build/resources/0ad.desktop /app/share/applications/",
         "mv build/resources/0ad.png /app/share/icons/hicolor/128x128/apps",
-        "mv build/resources/0ad.sh /app/bin/0ad",
-        "chmod +x /app/bin/0ad",
+        "install -D build/resources/0ad.sh /app/bin/0ad",
         "mv binaries/data/mods /app/share/games/0ad/",
         "mv binaries/data/config /app/share/games/0ad/",
         "mv binaries/data/tools /app/share/games/0ad/"
