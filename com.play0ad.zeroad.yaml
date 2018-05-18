@@ -1,0 +1,80 @@
+app-id: com.play0ad.zeroad
+runtime: org.freedesktop.Platform
+runtime-version: '1.6'
+sdk: org.freedesktop.Sdk
+command: 0ad
+finish-args:
+- --socket=wayland
+- --device=dri
+- --socket=pulseaudio
+- --share=network
+- --socket=x11
+- --share=ipc
+build-options:
+  cflags: -O2
+  cxxflags: -O2
+cleanup:
+- /include
+- /lib/pkgconfig
+- "*.a"
+- "*.la"
+modules:
+- name: boost
+  buildsystem: simple
+  build-commands:
+  - bootstrap.sh --prefix=/app --with-libraries=filesystem
+  - b2 headers
+  - b2 install
+  sources:
+  - sha256: 2684c972994ee57fc5632e03bf044746f6eb45d4920c343937a465fd67a5adba
+    type: archive
+    url: https://dl.bintray.com/boostorg/release/1.67.0/source/boost_1_67_0.tar.bz2
+    
+- name: gloox
+  sources:
+  - sha256: 0243086c0f4f0440d6d8e55705f83249a4463a1d75a034be42b5312e8886dea8
+    type: archive
+    url: https://camaya.net/download/gloox-1.0.20.tar.bz2
+    
+- name: enet
+  sources:
+  - sha256: e36072021faa28731b08c15b1c3b5b91b911baf5f6abcc7fe4a6d425abada35c
+    type: archive
+    url: http://enet.bespin.org/download/enet-1.3.13.tar.gz
+    
+- name: miniupnpc
+  buildsystem: cmake-ninja
+  sources:
+  - sha256: e19fb5e01ea5a707e2a8cb96f537fbd9f3a913d53d804a3265e3aeab3d2064c6
+    type: archive
+    url: https://miniupnp.tuxfamily.org/files/miniupnpc-2.1.tar.gz
+    
+- name: libsodium
+  sources:
+  - type: archive
+    url: https://download.libsodium.org/libsodium/releases/libsodium-1.0.16.tar.gz
+    sha256: eeadc7e1e1bcef09680fb4837d448fbdf57224978f865ac1c16745868fbd0533
+
+- name: 0ad
+  buildsystem: simple
+  build-commands:
+  - cd build/workspaces && ./update-workspaces.sh -j$FLATPAK_BUILDER_N_JOBS --disable-atlas
+    --bindir=/app/bin --libdir=/app/lib --datadir=/app/share/games/0ad/ && cd gcc
+    && make -j$FLATPAK_BUILDER_N_JOBS
+  post-install:
+  - mkdir -p /app/share/games/0ad
+  - mv binaries/system/lib* /app/lib/
+  - install -D -t /app/bin binaries/system/pyrogenesis
+  - install -Dm644 build/resources/0ad.appdata.xml /app/share/metainfo/com.play0ad.zeroad.appdata.xml
+  - install -Dm644 build/resources/0ad.desktop /app/share/applications/com.play0ad.zeroad.desktop
+  - install -Dm644 build/resources/0ad.png /app/share/icons/hicolor/128x128/apps/com.play0ad.zeroad.png
+  - install -D build/resources/0ad.sh /app/bin/0ad
+  - desktop-file-edit --set-key=Icon --set-value='com.play0ad.zeroad' /app/share/applications/com.play0ad.zeroad.desktop
+  - mv binaries/data/* /app/share/games/0ad
+  sources:
+  - sha256: cfa1e3b6989466961451c95a96c19c274cd373ce6d98f83836e6f862c9d3e163
+    type: archive
+    url: http://releases.wildfiregames.com/0ad-0.0.23-alpha-unix-build.tar.xz
+  - sha256: fdbf774637252dbedf339fbe29b77d7d585ab53a9a5ddede56dd7b8fda66d8ac
+    type: archive
+    url: http://releases.wildfiregames.com/0ad-0.0.23-alpha-unix-data.tar.xz
