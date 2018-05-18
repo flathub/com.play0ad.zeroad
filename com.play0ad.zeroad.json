@@ -94,9 +94,7 @@
         "install -Dm644 build/resources/0ad.desktop /app/share/applications/com.play0ad.zeroad.desktop",
         "install -Dm644 build/resources/0ad.png /app/share/icons/hicolor/128x128/apps/com.play0ad.zeroad.png",
         "install -D build/resources/0ad.sh /app/bin/0ad",
-        "mv binaries/data/mods /app/share/games/0ad/",
-        "mv binaries/data/config /app/share/games/0ad/",
-        "mv binaries/data/tools /app/share/games/0ad/"
+        "mv binaries/data/mods binaries/data/config binaries/data/tools /app/share/games/0ad/"
       ],
       "sources": [
         {
