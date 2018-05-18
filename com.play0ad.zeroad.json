@@ -63,15 +63,12 @@
     },
     {
       "name": "miniupnpc",
-      "buildsystem": "simple",
-      "build-commands": [
-        "cd miniupnpc && mkdir build && cd build && cmake -DCMAKE_INSTALL_PREFIX=/app .. && make install"
-      ],
+      "buildsystem": "cmake",
       "sources": [
         {
-          "sha256": "253a0ea5fe8f17d9f79f8758e1b6415d6a560e58bf3e9b5dbe714413dc908446",
+          "sha256": "e19fb5e01ea5a707e2a8cb96f537fbd9f3a913d53d804a3265e3aeab3d2064c6",
           "type": "archive",
-          "url": "https://github.com/miniupnp/miniupnp/archive/miniupnpc_2_0.tar.gz"
+          "url": "https://miniupnp.tuxfamily.org/files/miniupnpc-2.1.tar.gz"
         }
       ]
     },
