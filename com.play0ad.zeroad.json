@@ -86,7 +86,7 @@
       "name": "0ad",
       "buildsystem": "simple",
       "build-commands": [
-        "cd build/workspaces && ./update-workspaces.sh -j$(nproc) --disable-atlas --bindir=/app/bin --libdir=/app/lib --datadir=/app/share/games/0ad/ && cd gcc && make -j$(nproc)"
+        "cd build/workspaces && ./update-workspaces.sh -j$FLATPAK_BUILDER_N_JOBS --disable-atlas --bindir=/app/bin --libdir=/app/lib --datadir=/app/share/games/0ad/ && cd gcc && make -j$FLATPAK_BUILDER_N_JOBS"
       ],
       "cleanup": [
         "/include"
