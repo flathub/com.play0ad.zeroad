@@ -22,9 +22,9 @@ modules:
 - name: boost
   buildsystem: simple
   build-commands:
-  - bootstrap.sh --prefix=/app --with-libraries=filesystem
-  - b2 headers
-  - b2 install
+  - ./bootstrap.sh --prefix=/app --with-libraries=filesystem
+  - ./b2 headers
+  - ./b2 install
   sources:
   - sha256: 2684c972994ee57fc5632e03bf044746f6eb45d4920c343937a465fd67a5adba
     type: archive
