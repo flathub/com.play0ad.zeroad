@@ -78,3 +78,5 @@ modules:
   - sha256: fdbf774637252dbedf339fbe29b77d7d585ab53a9a5ddede56dd7b8fda66d8ac
     type: archive
     url: http://releases.wildfiregames.com/0ad-0.0.23-alpha-unix-data.tar.xz
+  post-install:
+  - sed -i 's|0ad.desktop|com.play0ad.zeroad.desktop|g' /app/share/metainfo/com.play0ad.zeroad.appdata.xml
