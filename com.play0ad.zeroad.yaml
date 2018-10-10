@@ -1,6 +1,6 @@
 app-id: com.play0ad.zeroad
 runtime: org.freedesktop.Platform
-runtime-version: '1.6'
+runtime-version: '18.08'
 sdk: org.freedesktop.Sdk
 command: 0ad
 finish-args:
@@ -10,9 +10,6 @@ finish-args:
 - --share=network
 - --socket=x11
 - --share=ipc
-build-options:
-  cflags: -O2
-  cxxflags: -O2
 cleanup:
 - /include
 - /lib/pkgconfig
@@ -26,15 +23,15 @@ modules:
   - ./b2 headers
   - ./b2 install
   sources:
-  - sha256: 2684c972994ee57fc5632e03bf044746f6eb45d4920c343937a465fd67a5adba
+  - sha256: 7f6130bc3cf65f56a618888ce9d5ea704fa10b462be126ad053e80e553d6d8b7
     type: archive
-    url: https://dl.bintray.com/boostorg/release/1.67.0/source/boost_1_67_0.tar.bz2
+    url: https://dl.bintray.com/boostorg/release/1.68.0/source/boost_1_68_0.tar.bz2
     
 - name: gloox
   sources:
-  - sha256: 0243086c0f4f0440d6d8e55705f83249a4463a1d75a034be42b5312e8886dea8
+  - sha256: 3c13155c10e3182a1a57779134cc524efb3657545849534b2831fae0e2c3a7cc
     type: archive
-    url: https://camaya.net/download/gloox-1.0.20.tar.bz2
+    url: https://camaya.net/download/gloox-1.0.21.tar.bz2
     
 - name: enet
   sources:
