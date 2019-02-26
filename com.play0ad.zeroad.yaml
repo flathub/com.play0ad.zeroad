@@ -5,7 +5,7 @@ sdk: org.freedesktop.Sdk
 command: 0ad
 finish-args:
 - --socket=wayland
-- --device=dri
+- --device=all
 - --socket=pulseaudio
 - --share=network
 - --socket=x11
