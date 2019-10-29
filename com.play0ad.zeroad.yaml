@@ -72,7 +72,7 @@ modules:
   sources:
   - sha256: cfa1e3b6989466961451c95a96c19c274cd373ce6d98f83836e6f862c9d3e163
     type: archive
-    url: http://releases.wildfiregames.com/0.0.23b-alpha-unix-build.tar.xz
+    url: http://releases.wildfiregames.com/0ad-0.0.23b-alpha-unix-build.tar.xz
   - sha256: fdbf774637252dbedf339fbe29b77d7d585ab53a9a5ddede56dd7b8fda66d8ac
     type: archive
     url: http://releases.wildfiregames.com/0ad-0.0.23b-alpha-unix-data.tar.xz
