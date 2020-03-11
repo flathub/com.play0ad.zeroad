@@ -1,6 +1,6 @@
 app-id: com.play0ad.zeroad
 runtime: org.freedesktop.Platform
-runtime-version: '18.08'
+runtime-version: '19.08'
 sdk: org.freedesktop.Sdk
 command: 0ad
 finish-args:
@@ -16,6 +16,7 @@ cleanup:
 - "*.a"
 - "*.la"
 modules:
+- shared-modules/python2.7/python-2.7.json
 - name: boost
   buildsystem: simple
   build-commands:
@@ -23,21 +24,21 @@ modules:
   - ./b2 headers
   - ./b2 install
   sources:
-  - sha256: 7f6130bc3cf65f56a618888ce9d5ea704fa10b462be126ad053e80e553d6d8b7
+  - sha256: 59c9b274bc451cf91a9ba1dd2c7fdcaf5d60b1b3aa83f2c9fa143417cc660722
     type: archive
-    url: https://dl.bintray.com/boostorg/release/1.68.0/source/boost_1_68_0.tar.bz2
+    url: https://dl.bintray.com/boostorg/release/1.72.0/source/boost_1_72_0.tar.bz2
     
 - name: gloox
   sources:
-  - sha256: 3c13155c10e3182a1a57779134cc524efb3657545849534b2831fae0e2c3a7cc
+  - sha256: 97cb6a0c07e320ffa4a7c66e8ab06b2361086271dc87ed2398befef4e8435f8a
     type: archive
-    url: https://camaya.net/download/gloox-1.0.21.tar.bz2
+    url: https://camaya.net/download/gloox-1.0.23.tar.bz2
     
 - name: enet
   sources:
-  - sha256: e36072021faa28731b08c15b1c3b5b91b911baf5f6abcc7fe4a6d425abada35c
+  - sha256: 98f6f57aab0a424469619ed3047728f0d3901ce8f0dea919c11e7966d807e870
     type: archive
-    url: http://enet.bespin.org/download/enet-1.3.13.tar.gz
+    url: http://enet.bespin.org/download/enet-1.3.14.tar.gz
     
 - name: miniupnpc
   buildsystem: cmake-ninja
@@ -49,8 +50,8 @@ modules:
 - name: libsodium
   sources:
   - type: archive
-    url: https://download.libsodium.org/libsodium/releases/libsodium-1.0.16.tar.gz
-    sha256: eeadc7e1e1bcef09680fb4837d448fbdf57224978f865ac1c16745868fbd0533
+    url: https://download.libsodium.org/libsodium/releases/libsodium-1.0.18.tar.gz
+    sha256: 6f504490b342a4f8a4c4a02fc9b866cbef8622d5df4e5452b46be121e46636c1
 
 - name: 0ad
   buildsystem: simple
@@ -70,9 +71,9 @@ modules:
   - desktop-file-edit --set-key=Icon --set-value='com.play0ad.zeroad' /app/share/applications/com.play0ad.zeroad.desktop
   - mv binaries/data/* /app/share/games/0ad
   sources:
-  - sha256: cfa1e3b6989466961451c95a96c19c274cd373ce6d98f83836e6f862c9d3e163
+  - sha256: 01bff7641ee08cac896c54d518d7e4b01752513105558f212e3199d747512a37
     type: archive
-    url: http://releases.wildfiregames.com/0ad-0.0.23-alpha-unix-build.tar.xz
-  - sha256: fdbf774637252dbedf339fbe29b77d7d585ab53a9a5ddede56dd7b8fda66d8ac
+    url: https://releases.wildfiregames.com/0ad-0.0.23b-alpha-unix-build.tar.xz
+  - sha256: e11b4ade7ede954cbbdc1fe6e2e4b25ac6b8d5a644133b640ffc9b099338a713
     type: archive
-    url: http://releases.wildfiregames.com/0ad-0.0.23-alpha-unix-data.tar.xz
+    url: http://releases.wildfiregames.com/0ad-0.0.23b-alpha-unix-data.tar.xz
