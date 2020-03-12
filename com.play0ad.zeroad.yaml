@@ -63,8 +63,7 @@ modules:
   - mkdir -p /app/share/games/0ad
   - mv binaries/system/lib* /app/lib/
   - install -D -t /app/bin binaries/system/pyrogenesis
-  - install -Dm644 build/resources/0ad.appdata.xml /app/share/metainfo/com.play0ad.zeroad.appdata.xml
-  - sed -i 's|0ad.desktop|com.play0ad.zeroad.desktop|g' /app/share/metainfo/com.play0ad.zeroad.appdata.xml
+  - install -Dm644 -t /app/share/metainfo com.play0ad.zeroad.appdata.xml
   - install -Dm644 build/resources/0ad.desktop /app/share/applications/com.play0ad.zeroad.desktop
   - install -Dm644 build/resources/0ad.png /app/share/icons/hicolor/128x128/apps/com.play0ad.zeroad.png
   - install -D build/resources/0ad.sh /app/bin/0ad
