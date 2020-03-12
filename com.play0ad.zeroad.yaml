@@ -24,9 +24,9 @@ modules:
   - ./b2 headers
   - ./b2 install
   sources:
-  - sha256: 59c9b274bc451cf91a9ba1dd2c7fdcaf5d60b1b3aa83f2c9fa143417cc660722
+  - sha256: 8f32d4617390d1c2d16f26a27ab60d97807b35440d45891fa340fc2648b04406
     type: archive
-    url: https://dl.bintray.com/boostorg/release/1.72.0/source/boost_1_72_0.tar.bz2
+    url: https://dl.bintray.com/boostorg/release/1.69.0/source/boost_1_69_0.tar.bz2
     
 - name: gloox
   sources:
