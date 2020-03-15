@@ -1,7 +1,7 @@
-diff --git a/0ad-0.0.23b-alpha-unix-build/0ad-0.0.23b-alpha/build/resources/0ad.appdata.xml b/0ad-0.0.23b-alpha-unix-build/0ad-0.0.23b-alpha/build/resources/0ad.appdata.xml
+diff --git a/build/resources/0ad.appdata.xml b/build/resources/0ad.appdata.xml
 index cbe4994..eaaf359 100644
---- a/0ad-0.0.23b-alpha-unix-build/0ad-0.0.23b-alpha/build/resources/0ad.appdata.xml
-+++ b/0ad-0.0.23b-alpha-unix-build/0ad-0.0.23b-alpha/build/resources/0ad.appdata.xml
+--- a/build/resources/0ad.appdata.xml
++++ b/build/resources/0ad.appdata.xml
 @@ -24,6 +24,10 @@
        technologies and civilization bonuses.
      </p>
