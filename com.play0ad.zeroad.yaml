@@ -63,7 +63,8 @@ modules:
   - mkdir -p /app/share/games/0ad
   - mv binaries/system/lib* /app/lib/
   - install -D -t /app/bin binaries/system/pyrogenesis
-  - install -Dm644 -t /app/share/metainfo com.play0ad.zeroad.appdata.xml
+  - install -Dm644 build/resources/0ad.appdata.xml /app/share/metainfo/com.play0ad.zeroad.appdata.xml
+  - sed -i 's|0ad.desktop|com.play0ad.zeroad.desktop|g' /app/share/metainfo/com.play0ad.zeroad.appdata.xml
   - install -Dm644 build/resources/0ad.desktop /app/share/applications/com.play0ad.zeroad.desktop
   - install -Dm644 build/resources/0ad.png /app/share/icons/hicolor/128x128/apps/com.play0ad.zeroad.png
   - install -D build/resources/0ad.sh /app/bin/0ad
@@ -76,5 +77,5 @@ modules:
   - sha256: e11b4ade7ede954cbbdc1fe6e2e4b25ac6b8d5a644133b640ffc9b099338a713
     type: archive
     url: http://releases.wildfiregames.com/0ad-0.0.23b-alpha-unix-data.tar.xz
-  - type: file
-    path: com.play0ad.zeroad.appdata.xml
+  - type: patch
+    path: 0ad_appdata.patch
