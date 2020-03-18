@@ -1,0 +1,15 @@
+diff --git a/build/resources/0ad.appdata.xml b/build/resources/0ad.appdata.xml
+index cbe4994..eaaf359 100644
+--- a/build/resources/0ad.appdata.xml
++++ b/build/resources/0ad.appdata.xml
+@@ -24,6 +24,10 @@
+       technologies and civilization bonuses.
+     </p>
+   </description>
++  <releases>
++    <release version="0.0.23" date="2018-12-23"/>
++    <release version="0.0.22" date="2017-07-26"/>
++  </releases>
+   <categories>
+     <category>Game</category>
+     <category>StrategyGame</category>
