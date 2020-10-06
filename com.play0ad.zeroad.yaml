@@ -78,4 +78,6 @@ modules:
     type: archive
     url: http://releases.wildfiregames.com/0ad-0.0.23b-alpha-unix-data.tar.xz
   - type: patch
-    path: 0ad_appdata.patch
+    paths:
+    - 0ad_appdata.patch
+    - 0ad-fcollada.patch
