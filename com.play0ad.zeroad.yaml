@@ -24,28 +24,28 @@ modules:
   - ./b2 headers
   - ./b2 install
   sources:
-  - sha256: 8f32d4617390d1c2d16f26a27ab60d97807b35440d45891fa340fc2648b04406
+  - sha256: 59c9b274bc451cf91a9ba1dd2c7fdcaf5d60b1b3aa83f2c9fa143417cc660722
     type: archive
-    url: https://dl.bintray.com/boostorg/release/1.69.0/source/boost_1_69_0.tar.bz2
+    url: https://dl.bintray.com/boostorg/release/1.72.0/source/boost_1_72_0.tar.bz2
     
 - name: gloox
   sources:
-  - sha256: 97cb6a0c07e320ffa4a7c66e8ab06b2361086271dc87ed2398befef4e8435f8a
+  - sha256: ae1462be2a2eb8fe5cd054825143617c53c2c9c7195606cb5a5ba68c0f68f9c9
     type: archive
-    url: https://camaya.net/download/gloox-1.0.23.tar.bz2
+    url: https://camaya.net/download/gloox-1.0.24.tar.bz2
     
 - name: enet
   sources:
-  - sha256: 98f6f57aab0a424469619ed3047728f0d3901ce8f0dea919c11e7966d807e870
+  - sha256: bbb77ebb607f4a03ecce0b06304bae4612bc26f418b75340644cff950562efd1
     type: archive
-    url: http://enet.bespin.org/download/enet-1.3.14.tar.gz
+    url: http://enet.bespin.org/download/enet-1.3.16.tar.gz
     
 - name: miniupnpc
   buildsystem: cmake-ninja
   sources:
-  - sha256: e19fb5e01ea5a707e2a8cb96f537fbd9f3a913d53d804a3265e3aeab3d2064c6
+  - sha256: 447b427854b6c027ea28bc838b18582c5a7e71db84f6ff36df93bd91e46d66cf
     type: archive
-    url: https://miniupnp.tuxfamily.org/files/miniupnpc-2.1.tar.gz
+    url: https://miniupnp.tuxfamily.org/files/miniupnpc-2.1.20191224.tar.gz
     
 - name: libsodium
   sources:
