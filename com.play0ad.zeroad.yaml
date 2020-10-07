@@ -20,7 +20,7 @@ modules:
 - name: boost
   buildsystem: simple
   build-commands:
-  - ./bootstrap.sh --prefix=/app --with-libraries=filesystem
+  - ./bootstrap.sh --prefix=/app --with-libraries=filesystem,system
   - ./b2 headers
   - ./b2 install
   sources:
@@ -80,4 +80,6 @@ modules:
   - type: patch
     paths:
     - 0ad_appdata.patch
+    - zen2-workaround.patch
+    - missing-includes.patch
     - 0ad-fcollada.patch
