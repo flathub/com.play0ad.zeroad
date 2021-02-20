@@ -2,6 +2,7 @@ app-id: com.play0ad.zeroad
 runtime: org.freedesktop.Platform
 runtime-version: '20.08'
 sdk: org.freedesktop.Sdk
+sdk-extensions: [org.freedesktop.Sdk.Extension.rust-stable]
 command: 0ad
 finish-args:
 - --socket=wayland
@@ -55,6 +56,8 @@ modules:
 
 - name: 0ad
   buildsystem: simple
+  build-options:
+    append-path: /usr/lib/sdk/rust-stable/bin
   build-commands:
   - cd build/workspaces && ./update-workspaces.sh -j$FLATPAK_BUILDER_N_JOBS --disable-atlas
     --bindir=/app/bin --libdir=/app/lib --datadir=/app/share/games/0ad/ && cd gcc
@@ -71,15 +74,11 @@ modules:
   - desktop-file-edit --set-key=Icon --set-value='com.play0ad.zeroad' /app/share/applications/com.play0ad.zeroad.desktop
   - mv binaries/data/* /app/share/games/0ad
   sources:
-  - sha256: 01bff7641ee08cac896c54d518d7e4b01752513105558f212e3199d747512a37
+  - sha256: 00aee2d2f11e48b169be41ddad8090e49f8173c09242fc2fa4a0d44e4763cc53
     type: archive
-    url: https://releases.wildfiregames.com/0ad-0.0.23b-alpha-unix-build.tar.xz
-  - sha256: e11b4ade7ede954cbbdc1fe6e2e4b25ac6b8d5a644133b640ffc9b099338a713
+    url: https://releases.wildfiregames.com/0ad-0.0.24-alpha-unix-build.tar.xz
+    strip-components: 0
+  - sha256: 929a55a6aa63c143b7fd20553375878a2e732353dbbcc757fa876b4181fdd75a
     type: archive
-    url: http://releases.wildfiregames.com/0ad-0.0.23b-alpha-unix-data.tar.xz
-  - type: patch
-    paths:
-    - 0ad_appdata.patch
-    - zen2-workaround.patch
-    - missing-includes.patch
-    - 0ad-fcollada.patch
+    url: https://releases.wildfiregames.com/0ad-0.0.24-alpha-unix-data.tar.xz
+    strip-components: 0
