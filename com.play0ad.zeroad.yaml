@@ -43,9 +43,9 @@ modules:
 - name: miniupnpc
   buildsystem: cmake-ninja
   sources:
-  - sha256: 447b427854b6c027ea28bc838b18582c5a7e71db84f6ff36df93bd91e46d66cf
+  - sha256: 3a3167e57727bf1d2a7b4861f7c7b57a663f58b9cf68227762ed2fc64e8ea11f
     type: archive
-    url: https://miniupnp.tuxfamily.org/files/miniupnpc-2.1.20191224.tar.gz
+    url: https://miniupnp.tuxfamily.org/files/miniupnpc-2.2.1.tar.gz
     
 - name: libsodium
   sources:
