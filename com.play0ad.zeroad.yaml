@@ -17,7 +17,6 @@ cleanup:
 - "*.a"
 - "*.la"
 modules:
-- shared-modules/python2.7/python-2.7.json
 - name: boost
   buildsystem: simple
   build-commands:
