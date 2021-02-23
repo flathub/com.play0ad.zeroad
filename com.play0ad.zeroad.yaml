@@ -73,11 +73,9 @@ modules:
   - desktop-file-edit --set-key=Icon --set-value='com.play0ad.zeroad' /app/share/applications/com.play0ad.zeroad.desktop
   - mv binaries/data/* /app/share/games/0ad
   sources:
-  - sha256: 00aee2d2f11e48b169be41ddad8090e49f8173c09242fc2fa4a0d44e4763cc53
-    type: archive
-    url: https://releases.wildfiregames.com/0ad-0.0.24-alpha-unix-build.tar.xz
-    strip-components: 0
-  - sha256: 929a55a6aa63c143b7fd20553375878a2e732353dbbcc757fa876b4181fdd75a
-    type: archive
-    url: https://releases.wildfiregames.com/0ad-0.0.24-alpha-unix-data.tar.xz
-    strip-components: 0
+  - type: archive
+    url: https://releases.wildfiregames.com/0ad-0.0.24b-alpha-unix-build.tar.xz
+    sha256: 325c23c9b6bfc16eb636af6a7a7bdaadbf19214b6eed0422d74cc0090bf137a8
+  - type: archive
+    url: https://releases.wildfiregames.com/0ad-0.0.24b-alpha-unix-data.tar.xz
+    sha256: 41f5868379749aa20b96a8fa2e60dc872ebe22047db061c7cc894462e897a32c
