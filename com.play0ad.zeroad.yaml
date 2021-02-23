@@ -58,6 +58,8 @@ modules:
   build-options:
     append-path: /usr/lib/sdk/rust-stable/bin
   build-commands:
+  - cp cargo.patch libraries/source/spidermonkey/
+  - echo "patch -p1 < ../cargo.patch" >> libraries/source/spidermonkey/patch.sh
   - cd build/workspaces && ./update-workspaces.sh -j$FLATPAK_BUILDER_N_JOBS --disable-atlas
     --bindir=/app/bin --libdir=/app/lib --datadir=/app/share/games/0ad/ && cd gcc
     && make -j$FLATPAK_BUILDER_N_JOBS
@@ -79,3 +81,5 @@ modules:
   - type: archive
     url: https://releases.wildfiregames.com/0ad-0.0.24b-alpha-unix-data.tar.xz
     sha256: 41f5868379749aa20b96a8fa2e60dc872ebe22047db061c7cc894462e897a32c
+  - type: file
+    path: cargo.patch
