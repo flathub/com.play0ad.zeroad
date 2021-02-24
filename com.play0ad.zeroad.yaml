@@ -78,25 +78,11 @@ modules:
   buildsystem: simple
   build-options:
     append-path: /usr/lib/sdk/rust-stable/bin
-    env:
-      AR: llvm-ar
-      NM: llvm-nm
-      RANLIB: llvm-ranlib
   build-commands:
-  - mkdir build; cd build && ../js/src/configure --prefix=/app --enable-optimize
-          --disable-tests --disable-jemalloc --disable-js-shell --enable-linker=lld
-          --without-intl-api --enable-shared-js --disable-jitspew &&
-    make -j $FLATPAK_BUILDER_N_JOBS && make install
-  sources:
-  - type: archive
-    url: https://ftp.mozilla.org/pub/firefox/releases/78.8.0esr/source/firefox-78.8.0esr.source.tar.xz
-    sha256: 1cf2dfdee2e31fd0a5ecced6275a33fa11bee1d2a7c65e23350b26992584a110
-
-- name: 0ad
-  buildsystem: simple
-  build-commands:
+  - cp cargo.patch libraries/source/spidermonkey/
+  - echo "patch -p1 < ../cargo.patch" >> libraries/source/spidermonkey/patch.sh
   - cd build/workspaces && ./update-workspaces.sh -j$FLATPAK_BUILDER_N_JOBS --disable-atlas
-    --bindir=/app/bin --libdir=/app/lib --datadir=/app/share/games/0ad/ --with-system-mozjs && cd gcc
+    --bindir=/app/bin --libdir=/app/lib --datadir=/app/share/games/0ad/ && cd gcc
     && make -j$FLATPAK_BUILDER_N_JOBS
   post-install:
   - mkdir -p /app/share/games/0ad
