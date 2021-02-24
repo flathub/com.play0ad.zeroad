@@ -53,7 +53,28 @@ modules:
     url: https://download.libsodium.org/libsodium/releases/libsodium-1.0.18.tar.gz
     sha256: 6f504490b342a4f8a4c4a02fc9b866cbef8622d5df4e5452b46be121e46636c1
 
-- name: 0ad
+- name: fmt
+  buildsystem: cmake-ninja
+  config-opts:
+    - -DFMT_TEST=Off
+  cleanup:
+  - "*"
+  sources:
+    - type: git
+      url: https://github.com/fmtlib/fmt
+      branch: 7.1.2
+
+- name: autoconf-2.13
+  config-opts:
+    - --program-suffix=2.13
+  cleanup:
+  - "*"
+  sources:
+  - type: archive
+    url: https://ftp.gnu.org/gnu/autoconf/autoconf-2.13.tar.gz
+    sha256: f0611136bee505811e9ca11ca7ac188ef5323a8e2ef19cffd3edb3cf08fd791e
+
+- name: mozjs
   buildsystem: simple
   build-options:
     append-path: /usr/lib/sdk/rust-stable/bin
