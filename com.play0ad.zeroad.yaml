@@ -102,5 +102,8 @@ modules:
   - type: archive
     url: https://releases.wildfiregames.com/0ad-0.0.24b-alpha-unix-data.tar.xz
     sha256: 41f5868379749aa20b96a8fa2e60dc872ebe22047db061c7cc894462e897a32c
+  - type: patch
+    paths:
+    - 0ad_appdata.patch
   - type: file
     path: cargo.patch
