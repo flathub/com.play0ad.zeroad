@@ -47,17 +47,21 @@ modules:
           type: anitya
           project-id: 696
           url-template: https://github.com/lsalzman/enet/archive/v$version.tar.gz
+      - type: script # cf. https://github.com/lsalzman/enet/blob/master/README
+        dest-filename: autogen.sh
+        commands:
+          - autoreconf -ifv
 
   - name: miniupnpc
     buildsystem: cmake-ninja
     sources:
       - sha256: 3a3167e57727bf1d2a7b4861f7c7b57a663f58b9cf68227762ed2fc64e8ea11f
         type: archive
-        url: http://miniupnp.free.fr/files/download.php?file=miniupnpc-2.2.1.tar.gz
+        url: https://miniupnp.tuxfamily.org/files/miniupnpc-2.2.1.tar.gz
         x-checker-data:
           type: anitya
           project-id: 1986
-          url-template: http://miniupnp.free.fr/files/download.php?file=miniupnpc-$version.tar.gz
+          url-template: https://miniupnp.tuxfamily.org/files/miniupnpc-$version.tar.gz
 
   - name: libsodium
     sources:
