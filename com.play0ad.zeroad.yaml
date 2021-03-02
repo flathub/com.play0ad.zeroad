@@ -5,133 +5,133 @@ sdk: org.freedesktop.Sdk
 sdk-extensions: [org.freedesktop.Sdk.Extension.rust-stable]
 command: 0ad
 finish-args:
-- --socket=wayland
-- --device=dri
-- --socket=pulseaudio
-- --share=network
-- --socket=x11
-- --share=ipc
+  - --socket=wayland
+  - --device=dri
+  - --socket=pulseaudio
+  - --share=network
+  - --socket=x11
+  - --share=ipc
 cleanup:
-- /include
-- /lib/pkgconfig
-- "*.a"
-- "*.la"
+  - /include
+  - /lib/pkgconfig
+  - '*.a'
+  - '*.la'
 modules:
-- name: boost
-  buildsystem: simple
-  build-commands:
-  - ./bootstrap.sh --prefix=/app --with-libraries=filesystem,system
-  - ./b2 headers
-  - ./b2 install
-  sources:
-  - sha256: 953db31e016db7bb207f11432bef7df100516eeb746843fa0486a222e3fd49cb
-    type: archive
-    url: https://dl.bintray.com/boostorg/release/1.75.0/source/boost_1_75_0.tar.bz2
-    
-- name: gloox
-  sources:
-  - sha256: ae1462be2a2eb8fe5cd054825143617c53c2c9c7195606cb5a5ba68c0f68f9c9
-    type: archive
-    url: https://camaya.net/download/gloox-1.0.24.tar.bz2
-    x-checker-data:
-      type: anitya
-      project-id: 7318
-      url-template: https://camaya.net/download/gloox-$version.tar.bz2
-    
-- name: enet
-  sources:
-  - sha256: a38f0f194555d558533b8b15c0c478e946310022d0ec7b34334e19e4574dcedc
-    type: archive
-    url: http://enet.bespin.org/download/enet-1.3.17.tar.gz
-    x-checker-data:
-      type: anitya
-      project-id: 696
-      url-template: https://github.com/lsalzman/enet/archive/v$version.tar.gz
-    
-- name: miniupnpc
-  buildsystem: cmake-ninja
-  sources:
-  - sha256: 3a3167e57727bf1d2a7b4861f7c7b57a663f58b9cf68227762ed2fc64e8ea11f
-    type: archive
-    url: https://miniupnp.tuxfamily.org/files/miniupnpc-2.2.1.tar.gz
-    x-checker-data:
-      type: anitya
-      project-id: 1986
-      url-template: http://miniupnp.free.fr/files/download.php?file=miniupnpc-$version.tar.gz
-    
-- name: libsodium
-  sources:
-  - type: archive
-    url: https://download.libsodium.org/libsodium/releases/libsodium-1.0.18.tar.gz
-    sha256: 6f504490b342a4f8a4c4a02fc9b866cbef8622d5df4e5452b46be121e46636c1
-    x-checker-data:
-      type: anitya
-      project-id: 1728
-      url-template: https://github.com/jedisct1/libsodium/archive/$version.tar.gz
+  - name: boost
+    buildsystem: simple
+    build-commands:
+      - ./bootstrap.sh --prefix=/app --with-libraries=filesystem,system
+      - ./b2 headers
+      - ./b2 install
+    sources:
+      - sha256: 953db31e016db7bb207f11432bef7df100516eeb746843fa0486a222e3fd49cb
+        type: archive
+        url: https://dl.bintray.com/boostorg/release/1.75.0/source/boost_1_75_0.tar.bz2
 
-- name: fmt
-  buildsystem: cmake-ninja
-  config-opts:
-    - -DFMT_TEST=Off
-  cleanup:
-  - "*"
-  sources:
-    - type: archive
-      url: https://github.com/fmtlib/fmt/archive/7.1.3.tar.gz
-      sha256: 5cae7072042b3043e12d53d50ef404bbb76949dad1de368d7f993a15c8c05ecc
-      x-checker-data:
-        type: anitya
-        project-id: 11526
-        url-template: https://github.com/fmtlib/fmt/archive/$version.tar.gz
+  - name: gloox
+    sources:
+      - sha256: ae1462be2a2eb8fe5cd054825143617c53c2c9c7195606cb5a5ba68c0f68f9c9
+        type: archive
+        url: https://camaya.net/download/gloox-1.0.24.tar.bz2
+        x-checker-data:
+          type: anitya
+          project-id: 7318
+          url-template: https://camaya.net/download/gloox-$version.tar.bz2
 
-- name: autoconf-2.13
-  config-opts:
-    - --program-suffix=-2.13
-  cleanup:
-  - "*"
-  sources:
-  - type: archive
-    url: https://ftp.gnu.org/gnu/autoconf/autoconf-2.13.tar.gz
-    sha256: f0611136bee505811e9ca11ca7ac188ef5323a8e2ef19cffd3edb3cf08fd791e
+  - name: enet
+    sources:
+      - sha256: 1e0b4bc0b7127a2d779dd7928f0b31830f5b3dcb7ec9588c5de70033e8d2434a
+        type: archive
+        url: https://github.com/lsalzman/enet/archive/v1.3.17.tar.gz
+        x-checker-data:
+          type: anitya
+          project-id: 696
+          url-template: https://github.com/lsalzman/enet/archive/v$version.tar.gz
 
-- name: 0ad
-  buildsystem: simple
-  build-options:
-    append-path: /usr/lib/sdk/rust-stable/bin
-  build-commands:
-  - cp cargo.patch libraries/source/spidermonkey/
-  - echo "patch -p1 < ../cargo.patch" >> libraries/source/spidermonkey/patch.sh
-  - cd build/workspaces && ./update-workspaces.sh -j$FLATPAK_BUILDER_N_JOBS --disable-atlas
-    --bindir=/app/bin --libdir=/app/lib --datadir=/app/share/games/0ad/ && cd gcc
-    && make -j$FLATPAK_BUILDER_N_JOBS
-  post-install:
-  - mkdir -p /app/share/games/0ad
-  - mv binaries/system/lib* /app/lib/
-  - install -D -t /app/bin binaries/system/pyrogenesis
-  - install -Dm644 build/resources/0ad.appdata.xml /app/share/metainfo/com.play0ad.zeroad.appdata.xml
-  - sed -i 's|0ad.desktop|com.play0ad.zeroad.desktop|g' /app/share/metainfo/com.play0ad.zeroad.appdata.xml
-  - install -Dm644 build/resources/0ad.desktop /app/share/applications/com.play0ad.zeroad.desktop
-  - install -Dm644 build/resources/0ad.png /app/share/icons/hicolor/128x128/apps/com.play0ad.zeroad.png
-  - install -D build/resources/0ad.sh /app/bin/0ad
-  - desktop-file-edit --set-key=Icon --set-value='com.play0ad.zeroad' /app/share/applications/com.play0ad.zeroad.desktop
-  - mv binaries/data/* /app/share/games/0ad
-  sources:
-  - type: archive
-    url: https://releases.wildfiregames.com/0ad-0.0.24b-alpha-unix-build.tar.xz
-    sha256: 325c23c9b6bfc16eb636af6a7a7bdaadbf19214b6eed0422d74cc0090bf137a8
-    x-checker-data:
-        type: anitya
-        project-id: 5830
-        url-template: https://releases.wildfiregames.com/0ad-$version-alpha-unix-build.tar.xz
-  - type: archive
-    url: https://releases.wildfiregames.com/0ad-0.0.24b-alpha-unix-data.tar.xz
-    sha256: 41f5868379749aa20b96a8fa2e60dc872ebe22047db061c7cc894462e897a32c
-    x-checker-data:
-        type: anitya
-        project-id: 5830
-        url-template: https://releases.wildfiregames.com/0ad-$version-alpha-unix-data.tar.xz
-  - type: patch
-    paths:
-    - 0ad_appdata.patch
-  - type: file
-    path: cargo.patch
+  - name: miniupnpc
+    buildsystem: cmake-ninja
+    sources:
+      - sha256: 3a3167e57727bf1d2a7b4861f7c7b57a663f58b9cf68227762ed2fc64e8ea11f
+        type: archive
+        url: http://miniupnp.free.fr/files/download.php?file=miniupnpc-2.2.1.tar.gz
+        x-checker-data:
+          type: anitya
+          project-id: 1986
+          url-template: http://miniupnp.free.fr/files/download.php?file=miniupnpc-$version.tar.gz
+
+  - name: libsodium
+    sources:
+      - type: archive
+        url: https://github.com/jedisct1/libsodium/archive/1.0.18.tar.gz
+        sha256: d59323c6b712a1519a5daf710b68f5e7fde57040845ffec53850911f10a5d4f4
+        x-checker-data:
+          type: anitya
+          project-id: 1728
+          url-template: https://github.com/jedisct1/libsodium/archive/$version.tar.gz
+
+  - name: fmt
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DFMT_TEST=Off
+    cleanup:
+      - '*'
+    sources:
+      - type: archive
+        url: https://github.com/fmtlib/fmt/archive/7.1.3.tar.gz
+        sha256: 5cae7072042b3043e12d53d50ef404bbb76949dad1de368d7f993a15c8c05ecc
+        x-checker-data:
+          type: anitya
+          project-id: 11526
+          url-template: https://github.com/fmtlib/fmt/archive/$version.tar.gz
+
+  - name: autoconf-2.13
+    config-opts:
+      - --program-suffix=-2.13
+    cleanup:
+      - '*'
+    sources:
+      - type: archive
+        url: https://ftp.gnu.org/gnu/autoconf/autoconf-2.13.tar.gz
+        sha256: f0611136bee505811e9ca11ca7ac188ef5323a8e2ef19cffd3edb3cf08fd791e
+
+  - name: 0ad
+    buildsystem: simple
+    build-options:
+      append-path: /usr/lib/sdk/rust-stable/bin
+    build-commands:
+      - cp cargo.patch libraries/source/spidermonkey/
+      - echo "patch -p1 < ../cargo.patch" >> libraries/source/spidermonkey/patch.sh
+      - cd build/workspaces && ./update-workspaces.sh -j$FLATPAK_BUILDER_N_JOBS --disable-atlas
+        --bindir=/app/bin --libdir=/app/lib --datadir=/app/share/games/0ad/ && cd
+        gcc && make -j$FLATPAK_BUILDER_N_JOBS
+    post-install:
+      - mkdir -p /app/share/games/0ad
+      - mv binaries/system/lib* /app/lib/
+      - install -D -t /app/bin binaries/system/pyrogenesis
+      - install -Dm644 build/resources/0ad.appdata.xml /app/share/metainfo/com.play0ad.zeroad.appdata.xml
+      - sed -i 's|0ad.desktop|com.play0ad.zeroad.desktop|g' /app/share/metainfo/com.play0ad.zeroad.appdata.xml
+      - install -Dm644 build/resources/0ad.desktop /app/share/applications/com.play0ad.zeroad.desktop
+      - install -Dm644 build/resources/0ad.png /app/share/icons/hicolor/128x128/apps/com.play0ad.zeroad.png
+      - install -D build/resources/0ad.sh /app/bin/0ad
+      - desktop-file-edit --set-key=Icon --set-value='com.play0ad.zeroad' /app/share/applications/com.play0ad.zeroad.desktop
+      - mv binaries/data/* /app/share/games/0ad
+    sources:
+      - type: archive
+        url: https://releases.wildfiregames.com/0ad-0.0.24b-alpha-unix-build.tar.xz
+        sha256: 325c23c9b6bfc16eb636af6a7a7bdaadbf19214b6eed0422d74cc0090bf137a8
+        x-checker-data:
+          type: anitya
+          project-id: 5830
+          url-template: https://releases.wildfiregames.com/0ad-$version-alpha-unix-build.tar.xz
+      - type: archive
+        url: https://releases.wildfiregames.com/0ad-0.0.24b-alpha-unix-data.tar.xz
+        sha256: 41f5868379749aa20b96a8fa2e60dc872ebe22047db061c7cc894462e897a32c
+        x-checker-data:
+          type: anitya
+          project-id: 5830
+          url-template: https://releases.wildfiregames.com/0ad-$version-alpha-unix-data.tar.xz
+      - type: patch
+        paths:
+          - 0ad_appdata.patch
+      - type: file
+        path: cargo.patch
