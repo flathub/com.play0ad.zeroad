@@ -123,6 +123,10 @@ modules:
           type: anitya
           project-id: 5150
           url-template: https://github.com/wxWidgets/wxWidgets/archive/v$version.tar.gz
+      - type: archive # commit taken from wxWidget's git submodule
+        url: https://github.com/wxWidgets/Catch/archive/ee4acb6ae6e32a02bc012d197aa82b1ca7a493ab.zip
+        sha256: cdc951487c8c18d90eb0ad3f997a4845e045584c661281fd94de66f14ada4ba0
+        dest: 3rdparty/catch
       - type: script
         dest-filename: autogen.sh
         commands:
