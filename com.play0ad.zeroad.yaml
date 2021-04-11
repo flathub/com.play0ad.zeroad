@@ -111,23 +111,27 @@ modules:
   - name: wxWidgets
     rm-configure: true
     config-opts:
-    - --with-gtk=3
-    - --with-opengl
+      - --with-gtk=3
+      - --with-opengl
     build-options:
       cxxflags: -std=c++11
     sources:
-    - type: archive
-      url: https://github.com/wxWidgets/wxWidgets/archive/v3.1.3.tar.gz
-      sha256: a5cb5ea326d76b5e472e9400933cef17c900d5c9b549e40eef00b64fe86d7cb0
-      x-checker-data:
+      - type: archive
+        url: https://github.com/wxWidgets/wxWidgets/archive/v3.1.4.tar.gz
+        sha256: f2698297b2d2c6d2372c23144c133e531248a64286c78ae17179155c94971d6f
+        x-checker-data:
           type: anitya
           project-id: 5150
           url-template: https://github.com/wxWidgets/wxWidgets/archive/v$version.tar.gz
-    - type: script
-      dest-filename: autogen.sh
-      commands:
-      - cp -p /usr/share/automake-*/config.{sub,guess} .
-      - autoconf -f -B build/autoconf_prepend-include
+      - type: archive # commit taken from wxWidget's git submodule
+        url: https://github.com/wxWidgets/Catch/archive/ee4acb6ae6e32a02bc012d197aa82b1ca7a493ab.zip
+        sha256: cdc951487c8c18d90eb0ad3f997a4845e045584c661281fd94de66f14ada4ba0
+        dest: 3rdparty/catch
+      - type: script
+        dest-filename: autogen.sh
+        commands:
+          - cp -p /usr/share/automake-*/config.{sub,guess} .
+          - autoconf -f -B build/autoconf_prepend-include
 
   - name: 0ad
     buildsystem: simple
@@ -136,9 +140,8 @@ modules:
     build-commands:
       - cp cargo.patch libraries/source/spidermonkey/
       - echo "patch -p1 < ../cargo.patch" >> libraries/source/spidermonkey/patch.sh
-      - cd build/workspaces && ./update-workspaces.sh -j$FLATPAK_BUILDER_N_JOBS
-        --bindir=/app/bin --libdir=/app/lib --datadir=/app/share/games/0ad/ && cd
-        gcc && make -j$FLATPAK_BUILDER_N_JOBS
+      - cd build/workspaces && ./update-workspaces.sh -j$FLATPAK_BUILDER_N_JOBS --bindir=/app/bin
+        --libdir=/app/lib --datadir=/app/share/games/0ad/ && cd gcc && make -j$FLATPAK_BUILDER_N_JOBS
     post-install:
       - mkdir -p /app/share/games/0ad
       - mv binaries/system/lib* /app/lib/
