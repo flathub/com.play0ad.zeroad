@@ -27,6 +27,11 @@ modules:
       - sha256: 953db31e016db7bb207f11432bef7df100516eeb746843fa0486a222e3fd49cb
         type: archive
         url: https://dl.bintray.com/boostorg/release/1.75.0/source/boost_1_75_0.tar.bz2
+        x-checker-data:
+          type: anitya
+          project-id: 6845
+          stable-only: true
+          url-template: https://dl.bintray.com/boostorg/release/$version/source/boost_${major}_${minor}_$patch.tar.bz2
 
   - name: gloox
     sources:
