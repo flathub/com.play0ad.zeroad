@@ -138,8 +138,6 @@ modules:
     build-options:
       append-path: /usr/lib/sdk/rust-stable/bin
     build-commands:
-      - cp cargo.patch libraries/source/spidermonkey/
-      - echo "patch -p1 < ../cargo.patch" >> libraries/source/spidermonkey/patch.sh
       - cd build/workspaces && ./update-workspaces.sh -j$FLATPAK_BUILDER_N_JOBS --bindir=/app/bin
         --libdir=/app/lib --datadir=/app/share/games/0ad/ && cd gcc && make -j$FLATPAK_BUILDER_N_JOBS
     post-install:
@@ -168,8 +166,7 @@ modules:
           type: anitya
           project-id: 5830
           url-template: https://releases.wildfiregames.com/0ad-$version-alpha-unix-data.tar.xz
-      - type: patch
-        paths:
-          - 0ad_appdata.patch
-      - type: file
-        path: cargo.patch
+      # has to be updated manually
+      - type: shell
+        commands:
+          - sed -e "s|</description>|</description><releases><release version=\"0.0.25\" date=\"2021-08-04\"/></releases>|g" -i build/resources/0ad.appdata.xml
