@@ -169,5 +169,5 @@ modules:
       # has to be updated manually
       - type: shell
         commands:
-          - sed -e "s|</description>|</description><releases><release version=\"0.0.25\"
-            date=\"2021-08-04\"/></releases>|g" -i build/resources/0ad.appdata.xml
+          - sed -e "s|</description>|</description><releases><release version=\"0.0.25b\"
+            date=\"2021-08-26\"/></releases>|g" -i build/resources/0ad.appdata.xml
