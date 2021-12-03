@@ -62,9 +62,9 @@ modules:
   - name: miniupnpc
     buildsystem: cmake-ninja
     sources:
-      - sha256: 888fb0976ba61518276fe1eda988589c700a3f2a69d71089260d75562afd3687
+      - sha256: dce41b4a4f08521c53a0ab163ad2007d18b5e1aa173ea5803bd47a1be3159c24
         type: archive
-        url: https://miniupnp.tuxfamily.org/files/miniupnpc-2.2.2.tar.gz
+        url: https://miniupnp.tuxfamily.org/files/miniupnpc-2.2.3.tar.gz
         x-checker-data:
           type: anitya
           project-id: 1986
@@ -73,8 +73,8 @@ modules:
   - name: libsodium
     sources:
       - type: archive
-        url: https://github.com/jedisct1/libsodium/archive/1.0.18.tar.gz
-        sha256: d59323c6b712a1519a5daf710b68f5e7fde57040845ffec53850911f10a5d4f4
+        url: https://github.com/jedisct1/libsodium/archive/1.0.18-RELEASE.tar.gz
+        sha256: b7292dd1da67a049c8e78415cd498ec138d194cfdb302e716b08d26b80fecc10
         x-checker-data:
           type: anitya
           project-id: 1728
