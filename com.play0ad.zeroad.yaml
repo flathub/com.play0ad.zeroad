@@ -63,7 +63,7 @@ modules:
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        sha256: dce41b4a4f08521c53a0ab163ad2007d18b5e1aa173ea5803bd47a1be3159c24
+        sha256: 888fb0976ba61518276fe1eda988589c700a3f2a69d71089260d75562afd3687
         url: https://miniupnp.tuxfamily.org/files/miniupnpc-2.2.2.tar.gz
         # build of miniupnpc 2.2.3 fail with
         # CMake Error at cmake_install.cmake:149 (file):
