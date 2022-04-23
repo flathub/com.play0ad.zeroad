@@ -7,7 +7,7 @@ command: 0ad
 finish-args:
   # wxWidgets doesn't work yet on Wayland
   #- --socket=wayland
-  - --socket=fallback-x11
+  - --socket=x11
   - --device=shm
   - --share=ipc
   - --device=dri
