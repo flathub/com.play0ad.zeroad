@@ -13,6 +13,7 @@ finish-args:
   - --device=dri
   - --socket=pulseaudio
   - --share=network
+  - --env=SDL_VIDEODRIVER=x11
 cleanup:
   - /include
   - /lib/pkgconfig
