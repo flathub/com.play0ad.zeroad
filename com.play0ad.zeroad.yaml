@@ -161,7 +161,8 @@ modules:
       - desktop-file-edit --set-key=Icon --set-value='com.play0ad.zeroad' /app/share/applications/com.play0ad.zeroad.desktop
       - mv binaries/data/* /app/share/games/0ad
     sources:
-      - type: archive
+      # download as file instead of as archive so we can use the last modified date for the release section of the metainfo file
+      - type: file
         url: https://releases.wildfiregames.com/0ad-0.0.26-alpha-unix-build.tar.xz
         sha256: 2e1c6df7e3312e77c5f82788664cffc3a78d3bf60606c00039275e1d13c0ee4b
         x-checker-data:
@@ -175,8 +176,11 @@ modules:
           type: anitya
           project-id: 5830
           url-template: https://releases.wildfiregames.com/0ad-$version-alpha-unix-data.tar.xz
-      # has to be updated manually
       - type: shell
         commands:
-          - sed -e "s|</description>|</description><releases><release version=\"0.0.25b\"
-            date=\"2021-08-26\"/></releases>|g" -i build/resources/0ad.appdata.xml
+          - tar -xf *.tar.xz --strip 1
+          - version=$(cat source/ps/Pyrogenesis.cpp | grep "engine_version =" | cut -d "=" -f 2 | cut -d "\"" -f 2) &&
+            date=$(stat -c %y *.tar.xz | cut -d " " -f 1) &&
+            sed -e "s|</description>|</description><releases><release version=\"$version\"
+            date=\"$date\"/></releases>|g" -i build/resources/0ad.appdata.xml
+
