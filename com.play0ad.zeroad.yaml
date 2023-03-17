@@ -38,9 +38,9 @@ modules:
 
   - name: gloox
     sources:
-      - sha256: ae1462be2a2eb8fe5cd054825143617c53c2c9c7195606cb5a5ba68c0f68f9c9
+      - sha256: cffe1cbd86dbe98be856024215321cd225001d1fa7d39118b99cb9453ba22754
         type: archive
-        url: https://camaya.net/download/gloox-1.0.24.tar.bz2
+        url: https://camaya.net/download/gloox-1.0.25.tar.bz2
         x-checker-data:
           type: anitya
           project-id: 7318
