@@ -95,10 +95,12 @@ modules:
       - type: archive
         url: https://github.com/fmtlib/fmt/archive/9.1.0.tar.gz
         sha256: 5dea48d1fcddc3ec571ce2058e13910a0d4a6bab4cc09a809d8b1dd1c88ae6f2
-        x-checker-data:
-          type: anitya
-          project-id: 11526
-          url-template: https://github.com/fmtlib/fmt/archive/$version.tar.gz
+        # 0 A.D. Alpha 26 is incompatible with fmtlib 10
+        # https://wildfiregames.com/forum/topic/107802-0ad-0026-isnt-compatible-with-libgmt-1000/
+        # x-checker-data:
+        #   type: anitya
+        #   project-id: 11526
+        #   url-template: https://github.com/fmtlib/fmt/archive/$version.tar.gz
 
   - name: autoconf-2.13
     config-opts:
