@@ -1,7 +1,7 @@
-Index: ps/trunk/source/network/NetMessage.cpp
+Index: source/network/NetMessage.cpp
 ===================================================================
---- ps/trunk/source/network/NetMessage.cpp	(revision 27656)
-+++ ps/trunk/source/network/NetMessage.cpp	(revision 27657)
+--- source/network/NetMessage.cpp	(revision 27656)
++++ source/network/NetMessage.cpp	(revision 27657)
 @@ -1,227 +1,228 @@
 -/* Copyright (C) 2017 Wildfire Games.
 +/* Copyright (C) 2023 Wildfire Games.
@@ -233,10 +233,10 @@ Index: ps/trunk/source/network/NetMessage.cpp
  
  	return pNewMessage;
  }
-Index: ps/trunk/source/simulation2/serialization/BinarySerializer.cpp
+Index: source/simulation2/serialization/BinarySerializer.cpp
 ===================================================================
---- ps/trunk/source/simulation2/serialization/BinarySerializer.cpp	(revision 27656)
-+++ ps/trunk/source/simulation2/serialization/BinarySerializer.cpp	(revision 27657)
+--- source/simulation2/serialization/BinarySerializer.cpp	(revision 27656)
++++ source/simulation2/serialization/BinarySerializer.cpp	(revision 27657)
 @@ -1,494 +1,494 @@
  /* Copyright (C) 2023 Wildfire Games.
   * This file is part of 0 A.D.
