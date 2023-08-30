@@ -176,6 +176,8 @@ modules:
           type: anitya
           project-id: 5830
           url-template: https://releases.wildfiregames.com/0ad-$version-alpha-unix-data.tar.xz
+      - type: patch
+        path: libfmt_fix.patch # cf. https://wildfiregames.com/forum/topic/107802-0ad-0026-isnt-compatible-with-libgmt-1000/
       - type: shell
         commands:
           - tar -xf *.tar.xz --strip 1
