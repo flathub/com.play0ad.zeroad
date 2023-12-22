@@ -1,19 +1,17 @@
 app-id: com.play0ad.zeroad
 runtime: org.freedesktop.Platform
-runtime-version: '22.08'
+runtime-version: '23.08'
 sdk: org.freedesktop.Sdk
 sdk-extensions: [org.freedesktop.Sdk.Extension.rust-stable]
 command: 0ad
 finish-args:
-  # wxWidgets doesn't work yet on Wayland
-  #- --socket=wayland
-  - --socket=x11
+  - --socket=wayland
+  - --socket=fallback-x11
   - --device=shm
   - --share=ipc
   - --device=dri
   - --socket=pulseaudio
   - --share=network
-  - --env=SDL_VIDEODRIVER=x11
 cleanup:
   - /include
   - /lib/pkgconfig
@@ -64,16 +62,12 @@ modules:
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        sha256: 888fb0976ba61518276fe1eda988589c700a3f2a69d71089260d75562afd3687
-        url: https://miniupnp.tuxfamily.org/files/miniupnpc-2.2.2.tar.gz
-        # build of miniupnpc 2.2.3 fail with
-        # CMake Error at cmake_install.cmake:149 (file):
-        # file INSTALL cannot find "/run/build/miniupnpc/miniupnpc.h": No such file
-        # or directory.
-        # x-checker-data:
-        #   type: anitya
-        #   project-id: 1986
-        #   url-template: https://miniupnp.tuxfamily.org/files/miniupnpc-$version.tar.gz
+        sha256: 38acd5f4602f7cf8bcdc1ec30b2d58db2e9912e5d9f5350dd99b06bfdffb517c
+        url: http://miniupnp.free.fr/files/miniupnpc-2.2.5.tar.gz
+        x-checker-data:
+          type: anitya
+          project-id: 1986
+          url-template: https://miniupnp.tuxfamily.org/files/miniupnpc-$version.tar.gz
 
   - name: libsodium
     sources:
@@ -163,15 +157,15 @@ modules:
     sources:
       # download as file instead of as archive so we can use the last modified date for the release section of the metainfo file
       - type: file
-        url: https://releases.wildfiregames.com/0ad-0.0.26-alpha-unix-build.tar.xz
-        sha256: 2e1c6df7e3312e77c5f82788664cffc3a78d3bf60606c00039275e1d13c0ee4b
+        url: https://releases.wildfiregames.com/rc/0ad-0.0.27-rc1-27645-alpha-unix-build.tar.xz
+        sha256: 8731c4810d591ae582ffc01e497158a3d2cdab639da07322c09bb1ff060dceb7
         x-checker-data:
           type: anitya
           project-id: 5830
           url-template: https://releases.wildfiregames.com/0ad-$version-alpha-unix-build.tar.xz
       - type: archive
-        url: https://releases.wildfiregames.com/0ad-0.0.26-alpha-unix-data.tar.xz
-        sha256: b200e48558f882807910e3c686567b6a396248d9d418044ecfde090b05772d7d
+        url: https://releases.wildfiregames.com/rc/0ad-0.0.27-rc1-27645-alpha-unix-data.tar.xz
+        sha256: e52d6a374da0cae6032f3f8fec1599ba282b8b9d38e7f5b7e34b3d7596d45f2b
         x-checker-data:
           type: anitya
           project-id: 5830
