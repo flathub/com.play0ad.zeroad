@@ -5,15 +5,13 @@ sdk: org.freedesktop.Sdk
 sdk-extensions: [org.freedesktop.Sdk.Extension.rust-stable]
 command: 0ad
 finish-args:
-  # wxWidgets doesn't work yet on Wayland
-  #- --socket=wayland
-  - --socket=x11
+  - --socket=wayland
+  - --socket=fallback-x11
   - --device=shm
   - --share=ipc
   - --device=dri
   - --socket=pulseaudio
   - --share=network
-  - --env=SDL_VIDEODRIVER=x11
 cleanup:
   - /include
   - /lib/pkgconfig
