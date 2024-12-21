@@ -27,9 +27,9 @@ modules:
       - ./b2 headers
       - ./b2 install
     sources:
-      - sha256: a6e1ab9b0860e6a2881dd7b21fe9f737a095e5f33a3a874afc6a345228597ee6
+      - sha256: af57be25cb4c4f4b413ed692fe378affb4352ea50fbe294a11ef548f4d527d89
         type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.82.0/source/boost_1_82_0.tar.bz2
+        url: https://boostorg.jfrog.io/artifactory/main/release/1.87.0/source/boost_1_87_0.tar.bz2
         x-checker-data:
           type: anitya
           project-id: 6845
@@ -48,9 +48,9 @@ modules:
 
   - name: enet
     sources:
-      - sha256: 1e0b4bc0b7127a2d779dd7928f0b31830f5b3dcb7ec9588c5de70033e8d2434a
+      - sha256: 28603c895f9ed24a846478180ee72c7376b39b4bb1287b73877e5eae7d96b0dd
         type: archive
-        url: https://github.com/lsalzman/enet/archive/v1.3.17.tar.gz
+        url: https://github.com/lsalzman/enet/archive/v1.3.18.tar.gz
         x-checker-data:
           type: anitya
           project-id: 696
@@ -93,8 +93,8 @@ modules:
       - '*'
     sources:
       - type: archive
-        url: https://github.com/fmtlib/fmt/archive/9.1.0.tar.gz
-        sha256: 5dea48d1fcddc3ec571ce2058e13910a0d4a6bab4cc09a809d8b1dd1c88ae6f2
+        url: https://github.com/fmtlib/fmt/archive/11.0.2.tar.gz
+        sha256: 6cb1e6d37bdcb756dbbe59be438790db409cdb4868c66e888d5df9f13f7c027f
         x-checker-data:
           type: anitya
           project-id: 11526
@@ -122,8 +122,8 @@ modules:
       cxxflags: -std=c++11
     sources:
       - type: archive
-        url: https://github.com/wxWidgets/wxWidgets/archive/v3.2.2.1.tar.gz
-        sha256: 0b96807e700288652f1538d8f7db25559cbb890f15fe2001ca7eef6f7cce3262
+        url: https://github.com/wxWidgets/wxWidgets/archive/v3.2.6.tar.gz
+        sha256: 46372b2dbf976521e1d7cca22afc3d3542d171a488b391444cf89aba87ea7d16
         x-checker-data:
           type: anitya
           project-id: 5150
