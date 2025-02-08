@@ -29,12 +29,12 @@ modules:
     sources:
       - sha256: a6e1ab9b0860e6a2881dd7b21fe9f737a095e5f33a3a874afc6a345228597ee6
         type: archive
-        url: https://boostorg.jfrog.io/artifactory/main/release/1.82.0/source/boost_1_82_0.tar.bz2
+        url: https://archives.boost.io/release/1.82.0/source/boost_1_82_0.tar.bz2
         x-checker-data:
           type: anitya
           project-id: 6845
           stable-only: true
-          url-template: https://boostorg.jfrog.io/artifactory/main/release/$version/source/boost_${major}_${minor}_$patch.tar.bz2
+          url-template: https://archives.boost.io/release/$version/source/boost_${major}_${minor}_${patch}.tar.bz2
 
   - name: gloox
     sources:
