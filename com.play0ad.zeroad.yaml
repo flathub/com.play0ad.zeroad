@@ -122,8 +122,8 @@ modules:
       cxxflags: -std=c++11
     sources:
       - type: archive
-        url: https://github.com/wxWidgets/wxWidgets/archive/v3.2.2.1.tar.gz
-        sha256: 0b96807e700288652f1538d8f7db25559cbb890f15fe2001ca7eef6f7cce3262
+        url: https://github.com/wxWidgets/wxWidgets/archive/v3.2.6.tar.gz
+        sha256: 46372b2dbf976521e1d7cca22afc3d3542d171a488b391444cf89aba87ea7d16
         x-checker-data:
           type: anitya
           project-id: 5150
