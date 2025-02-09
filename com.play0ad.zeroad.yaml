@@ -14,7 +14,7 @@ finish-args:
   - --device=dri
   - --socket=pulseaudio
   - --share=network
-  - --env=SDL_VIDEODRIVER=wayland
+  - --env=SDL_VIDEODRIVER=wayland,x11
 cleanup:
   - /include
   - /lib/pkgconfig
