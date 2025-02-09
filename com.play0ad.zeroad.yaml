@@ -29,9 +29,9 @@ modules:
       - ./b2 headers
       - ./b2 install
     sources:
-      - sha256: a6e1ab9b0860e6a2881dd7b21fe9f737a095e5f33a3a874afc6a345228597ee6
+      - sha256: af57be25cb4c4f4b413ed692fe378affb4352ea50fbe294a11ef548f4d527d89
         type: archive
-        url: https://archives.boost.io/release/1.82.0/source/boost_1_82_0.tar.bz2
+        url: https://archives.boost.io/release/1.87.0/source/boost_1_87_0.tar.bz2
         x-checker-data:
           type: anitya
           project-id: 6845
@@ -152,8 +152,8 @@ modules:
       - rustc --version
       - python3 --version
       - libraries/build-source-libs.sh -j$FLATPAK_BUILDER_N_JOBS
-      - build/workspaces/update-workspaces.sh --without-tests -j$FLATPAK_BUILDER_N_JOBS --bindir=/app/bin
-        --libdir=/app/lib --datadir=/app/share/games/0ad/
+      - build/workspaces/update-workspaces.sh --without-tests -j$FLATPAK_BUILDER_N_JOBS
+        --bindir=/app/bin --libdir=/app/lib --datadir=/app/share/games/0ad/
       - make -C build/workspaces/gcc config=release -j$FLATPAK_BUILDER_N_JOBS
     post-install:
       - mkdir -p /app/share/games/0ad
@@ -191,7 +191,7 @@ modules:
             version=\"$version\" date=\"$date\"/></releases>|g" -i build/resources/0ad.appdata.xml
       - type: patch
         strip-components: 1
-        options: 
+        options:
           - -l
           - --force
         paths:
