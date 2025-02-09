@@ -1,17 +1,17 @@
-From 8619260bc84d600a624ad0e51940ce6f5100af8a Mon Sep 17 00:00:00 2001
+From d32eb3c8f163ab26f30fb7da6496b9a416fcacd6 Mon Sep 17 00:00:00 2001
 From: Stan <stan@wildfiregames.com>
 Date: Sun, 9 Feb 2025 13:31:54 +0100
 Subject: [PATCH] Patch metainfo file to to match the new requirements
 
 ---
- build/resources/0ad.appdata.xml | 39 +++++++++++++++++++++++----------
- 1 file changed, 28 insertions(+), 11 deletions(-)
+ build/resources/0ad.appdata.xml | 63 +++++++++++++++++++++++++++------
+ 1 file changed, 52 insertions(+), 11 deletions(-)
 
 diff --git a/build/resources/0ad.appdata.xml b/build/resources/0ad.appdata.xml
-index 9b63a1ff5a..fc9689b16e 100644
+index 9b63a1ff5a..5fff2e1f8a 100644
 --- a/build/resources/0ad.appdata.xml
 +++ b/build/resources/0ad.appdata.xml
-@@ -1,11 +1,14 @@
+@@ -1,12 +1,19 @@
  <?xml version="1.0" encoding="UTF-8"?>
 -<!-- Copyright 2018 Wildfire Games <webmaster@wildfiregames.com> -->
 +<!-- Copyright 2025 Wildfire Games <webmaster@wildfiregames.com> -->
@@ -23,12 +23,17 @@ index 9b63a1ff5a..fc9689b16e 100644
    <launchable type="desktop-id">0ad.desktop</launchable>
    <project_license>GPL-2.0+ and CC-BY-SA</project_license>
    <metadata_license>CC-BY-SA-3.0</metadata_license>
--  <name>0 A.D.</name>
-+  <name>0 A.D. Empires Ascendant</name>
-   <summary>Real-Time Strategy Game of Ancient Warfare</summary>
+   <name>0 A.D.</name>
+-  <summary>Real-Time Strategy Game of Ancient Warfare</summary>
++  <summary>A real time strategy game</summary>
++  <branding>
++    <color type="primary" scheme_preference="light">#9a3334</color>
++    <color type="primary" scheme_preference="dark">#ca4849</color>
++  </branding>
    <description>
      <p>
-@@ -15,10 +18,10 @@
+       0 A.D. is a real-time strategy (RTS) game of ancient warfare.
+@@ -15,10 +22,10 @@
        at their peak of economic growth and military prowess.
      </p>
      <p>
@@ -41,9 +46,30 @@ index 9b63a1ff5a..fc9689b16e 100644
        Mauryas and the Kushites.
        Each civilization is complete with substantially unique artwork,
        technologies and civilization bonuses.
-@@ -33,10 +36,22 @@
+@@ -32,11 +39,43 @@
+   <url type="bugtracker">https://gitea.wildfiregames.com/0ad/0ad/issues/</url>
    <url type="translate">https://gitea.wildfiregames.com/0ad/0ad/wiki/Localization</url>
    <url type="donation">https://play0ad.com/community/donate/</url>
++  <releases>
++    <release version="0.27.0" date="2025-01-30">
++        <url type="details">https://play0ad.com/new-release-0-a-d-alpha-27-agni/</url>
++        <description>
++            <p>Wildfire Games proudly announces the release of 0 A.D. Alpha 27: "Agni", the last alpha version of the free, open-source real-time strategy game of ancient warfare.</p>
++            <ul>
++                <li>Vulkan Renderer for improved performance.</li>
++                <li>Multiplayer Savegames support.</li>
++                <li>New Tips &amp; Tricks page for enhanced guidance.</li>
++                <li>Naval overhaul with categorized warships.</li>
++                <li>New and updated random and skirmish maps.</li>
++                <li>Gameplay enhancements: Civilization differentiation, melee balance updates, and improved capture mechanics.</li>
++                <li>Engine improvements: GPU Skinning, FSR upscaling, SpiderMonkey upgrades.</li>
++                <li>Observer flares and improved anti-cheat measures.</li>
++                <li>Migration to a git-based development environment.</li>
++                <li>Various bug fixes, UI enhancements, and performance optimizations.</li>
++            </ul>
++        </description>
++    </release>
++  </releases>
    <screenshots>
 -    <screenshot type="default">https://play0ad.com/wp-content/gallery/screenshots/screenshot0072.jpg</screenshot>
 -    <screenshot>https://play0ad.com/wp-content/gallery/screenshots/water-specular.jpg</screenshot>
@@ -51,24 +77,24 @@ index 9b63a1ff5a..fc9689b16e 100644
 -    <screenshot>https://play0ad.com/wp-content/gallery/screenshots/cycladic_arcgipelago_6.jpg</screenshot>
 +    <screenshot type="default">
 +        <image>https://play0ad.com/wp-content/gallery/screenshots/screenshot0072.jpg</image>
-+        <caption>A bird's-eye view of a Maurya village, showing buildings, farmland, and defensive structures within a coastal setting. </caption>
++        <caption>Maurya village with buildings and farms</caption>
 +    </screenshot>
 +    <screenshot>
 +        <image>https://play0ad.com/wp-content/gallery/screenshots/water-specular.jpg</image>
-+        <caption>Four ancient Carthaginian biremes, identifiable by their distinctive sails and oars, navigate a tranquil cove. The clear turquoise water laps against a sandy shore fringed by rocky hillsides. </caption>
++        <caption>Carthaginian biremes in a tranquil cove</caption>
 +    </screenshot>
 +      <screenshot>
 +        <image>https://play0ad.com/wp-content/gallery/screenshots/screenshot0050.jpg</image>
-+        <caption>A bird's-eye view of a Republican roman village, showing buildings, farmland, and defensive structures within a desertic setting. </caption>
++        <caption>Republican Roman village in a desert setting</caption>
 +    </screenshot>
 +      <screenshot>
 +        <image>https://play0ad.com/wp-content/gallery/screenshots/cycladic_arcgipelago_6.jpg</image>
-+        <caption>A top view of the cycladic archipelago depicting 6 islands of various sizes with limited vegetation. </caption>
++        <caption>Cycladic archipelago with six small islands</caption>
 +    </screenshot>
    </screenshots>
    <update_contact>webmaster@wildfiregames.com</update_contact>
    <keywords>
-@@ -55,6 +70,7 @@
+@@ -55,6 +94,7 @@
      <keyword>Britons</keyword>
      <keyword>Carthaginians</keyword>
      <keyword>Gauls</keyword>
@@ -76,7 +102,7 @@ index 9b63a1ff5a..fc9689b16e 100644
      <keyword>Iberians</keyword>
      <keyword>Kushites</keyword>
      <keyword>Macedonians</keyword>
-@@ -87,7 +103,8 @@
+@@ -87,7 +127,8 @@
      <content_attribute id="money-purchasing">none</content_attribute>
      <content_attribute id="money-gambling">none</content_attribute>
    </content_rating>
@@ -85,7 +111,7 @@ index 9b63a1ff5a..fc9689b16e 100644
 -  </mimetypes>
 +  <provides>
 +      <mediatype>application/x-pyromod+zip</mediatype>
-+      <binary>osu!</binary>
++      <binary>pyrogenesis</binary>
 +  </provides>
  </component>
 -- 
