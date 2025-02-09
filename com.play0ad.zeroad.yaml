@@ -42,11 +42,11 @@ modules:
     sources:
       - sha256: 591bd12c249ede0b50a1ef6b99ac0de8ef9c1ba4fd2e186f97a740215cc5966c
         type: archive
-        url: https://camaya.net/download/gloox-1.0.28.tar.bz2
+        url: https://releases.wildfiregames.com/libs/gloox-1.0.28.tar.bz2
         x-checker-data:
           type: anitya
           project-id: 7318
-          url-template: https://camaya.net/download/gloox-$version.tar.bz2
+          url-template: https://releases.wildfiregames.com/libs/gloox-$version.tar.bz2
 
   - name: enet
     sources:
