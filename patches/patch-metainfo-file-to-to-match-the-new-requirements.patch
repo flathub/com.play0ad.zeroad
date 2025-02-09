@@ -1,0 +1,93 @@
+From 8619260bc84d600a624ad0e51940ce6f5100af8a Mon Sep 17 00:00:00 2001
+From: Stan <stan@wildfiregames.com>
+Date: Sun, 9 Feb 2025 13:31:54 +0100
+Subject: [PATCH] Patch metainfo file to to match the new requirements
+
+---
+ build/resources/0ad.appdata.xml | 39 +++++++++++++++++++++++----------
+ 1 file changed, 28 insertions(+), 11 deletions(-)
+
+diff --git a/build/resources/0ad.appdata.xml b/build/resources/0ad.appdata.xml
+index 9b63a1ff5a..fc9689b16e 100644
+--- a/build/resources/0ad.appdata.xml
++++ b/build/resources/0ad.appdata.xml
+@@ -1,11 +1,14 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+-<!-- Copyright 2018 Wildfire Games <webmaster@wildfiregames.com> -->
++<!-- Copyright 2025 Wildfire Games <webmaster@wildfiregames.com> -->
+ <component type="desktop-application">
+   <id>com.play0ad.zeroad</id>
++  <developer id="com.wildfiregames">
++    <name>Wildfire Games</name>
++  </developer>
+   <launchable type="desktop-id">0ad.desktop</launchable>
+   <project_license>GPL-2.0+ and CC-BY-SA</project_license>
+   <metadata_license>CC-BY-SA-3.0</metadata_license>
+-  <name>0 A.D.</name>
++  <name>0 A.D. Empires Ascendant</name>
+   <summary>Real-Time Strategy Game of Ancient Warfare</summary>
+   <description>
+     <p>
+@@ -15,10 +18,10 @@
+       at their peak of economic growth and military prowess.
+     </p>
+     <p>
+-      The thirteen factions are: Three of the Hellenic States (Athens, Sparta and
++      The fourteen factions are: Three of the Hellenic States (Athens, Sparta and
+       Macedonia), two of the kingdoms of Alexander the Great's successors
+       (Seleucids and Ptolemaic Egyptians), two Celtic tribes (Britons and
+-      Gauls), the Romans, the Persians, the Iberians, the Carthaginians, the
++      Gauls), the Romans, the Persians, the Iberians, the Carthaginians, the Hans, the
+       Mauryas and the Kushites.
+       Each civilization is complete with substantially unique artwork,
+       technologies and civilization bonuses.
+@@ -33,10 +36,22 @@
+   <url type="translate">https://gitea.wildfiregames.com/0ad/0ad/wiki/Localization</url>
+   <url type="donation">https://play0ad.com/community/donate/</url>
+   <screenshots>
+-    <screenshot type="default">https://play0ad.com/wp-content/gallery/screenshots/screenshot0072.jpg</screenshot>
+-    <screenshot>https://play0ad.com/wp-content/gallery/screenshots/water-specular.jpg</screenshot>
+-    <screenshot>https://play0ad.com/wp-content/gallery/screenshots/screenshot0050.jpg</screenshot>
+-    <screenshot>https://play0ad.com/wp-content/gallery/screenshots/cycladic_arcgipelago_6.jpg</screenshot>
++    <screenshot type="default">
++        <image>https://play0ad.com/wp-content/gallery/screenshots/screenshot0072.jpg</image>
++        <caption>A bird's-eye view of a Maurya village, showing buildings, farmland, and defensive structures within a coastal setting. </caption>
++    </screenshot>
++    <screenshot>
++        <image>https://play0ad.com/wp-content/gallery/screenshots/water-specular.jpg</image>
++        <caption>Four ancient Carthaginian biremes, identifiable by their distinctive sails and oars, navigate a tranquil cove. The clear turquoise water laps against a sandy shore fringed by rocky hillsides. </caption>
++    </screenshot>
++      <screenshot>
++        <image>https://play0ad.com/wp-content/gallery/screenshots/screenshot0050.jpg</image>
++        <caption>A bird's-eye view of a Republican roman village, showing buildings, farmland, and defensive structures within a desertic setting. </caption>
++    </screenshot>
++      <screenshot>
++        <image>https://play0ad.com/wp-content/gallery/screenshots/cycladic_arcgipelago_6.jpg</image>
++        <caption>A top view of the cycladic archipelago depicting 6 islands of various sizes with limited vegetation. </caption>
++    </screenshot>
+   </screenshots>
+   <update_contact>webmaster@wildfiregames.com</update_contact>
+   <keywords>
+@@ -55,6 +70,7 @@
+     <keyword>Britons</keyword>
+     <keyword>Carthaginians</keyword>
+     <keyword>Gauls</keyword>
++    <keyword>Hans</keyword>
+     <keyword>Iberians</keyword>
+     <keyword>Kushites</keyword>
+     <keyword>Macedonians</keyword>
+@@ -87,7 +103,8 @@
+     <content_attribute id="money-purchasing">none</content_attribute>
+     <content_attribute id="money-gambling">none</content_attribute>
+   </content_rating>
+-  <mimetypes>
+-    <mimetype>application/x-pyromod+zip</mimetype>
+-  </mimetypes>
++  <provides>
++      <mediatype>application/x-pyromod+zip</mediatype>
++      <binary>osu!</binary>
++  </provides>
+ </component>
+-- 
+2.47.1
+
