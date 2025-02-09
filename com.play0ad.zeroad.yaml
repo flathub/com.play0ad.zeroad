@@ -38,9 +38,9 @@ modules:
 
   - name: gloox
     sources:
-      - sha256: 0b8b7371439bc58d9e51384b616c964b18b7b41b87af1b7855104380eda86ffb
+      - sha256: 591bd12c249ede0b50a1ef6b99ac0de8ef9c1ba4fd2e186f97a740215cc5966c
         type: archive
-        url: https://camaya.net/download/gloox-1.0.27.tar.bz2
+        url: https://camaya.net/download/gloox-1.0.28.tar.bz2
         x-checker-data:
           type: anitya
           project-id: 7318
@@ -122,8 +122,8 @@ modules:
       cxxflags: -std=c++11
     sources:
       - type: archive
-        url: https://github.com/wxWidgets/wxWidgets/archive/v3.2.2.1.tar.gz
-        sha256: 0b96807e700288652f1538d8f7db25559cbb890f15fe2001ca7eef6f7cce3262
+        url: https://github.com/wxWidgets/wxWidgets/archive/v3.2.6.tar.gz
+        sha256: 46372b2dbf976521e1d7cca22afc3d3542d171a488b391444cf89aba87ea7d16
         x-checker-data:
           type: anitya
           project-id: 5150
