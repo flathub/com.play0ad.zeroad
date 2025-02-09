@@ -65,16 +65,12 @@ modules:
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        sha256: 888fb0976ba61518276fe1eda988589c700a3f2a69d71089260d75562afd3687
-        url: https://miniupnp.tuxfamily.org/files/miniupnpc-2.2.2.tar.gz
-        # build of miniupnpc 2.2.3 fail with
-        # CMake Error at cmake_install.cmake:149 (file):
-        # file INSTALL cannot find "/run/build/miniupnpc/miniupnpc.h": No such file
-        # or directory.
-        # x-checker-data:
-        #   type: anitya
-        #   project-id: 1986
-        #   url-template: https://miniupnp.tuxfamily.org/files/miniupnpc-$version.tar.gz
+        sha256: 05b929679091b9921b6b6c1f25e39e4c8d1f4d46c8feb55a412aa697aee03a93
+        url: https://miniupnp.tuxfamily.org/files/miniupnpc-2.2.8.tar.gz
+        x-checker-data:
+          type: anitya
+          project-id: 1986
+          url-template: https://miniupnp.tuxfamily.org/files/miniupnpc-$version.tar.gz
 
   - name: libsodium
     sources:
