@@ -2,7 +2,9 @@ app-id: com.play0ad.zeroad
 runtime: org.freedesktop.Platform
 runtime-version: '24.08'
 sdk: org.freedesktop.Sdk
-sdk-extensions: [org.freedesktop.Sdk.Extension.rust-stable]
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+  - org.freedesktop.Sdk.Extension.llvm18
 command: 0ad
 finish-args:
   # wxWidgets doesn't work yet on Wayland
@@ -145,10 +147,14 @@ modules:
   - name: 0ad
     buildsystem: simple
     build-options:
-      append-path: /usr/lib/sdk/rust-stable/bin
+      append-path: /usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm18/bin
     build-commands:
-      - cd build/workspaces && ./update-workspaces.sh -j$FLATPAK_BUILDER_N_JOBS --bindir=/app/bin
-        --libdir=/app/lib --datadir=/app/share/games/0ad/ && cd gcc && make -j$FLATPAK_BUILDER_N_JOBS
+      - rustc --version
+      - python3 --version
+      - libraries/build-source-libs.sh -j$FLATPAK_BUILDER_N_JOBS
+      - build/workspaces/update-workspaces.sh --without-tests -j$FLATPAK_BUILDER_N_JOBS --bindir=/app/bin
+        --libdir=/app/lib --datadir=/app/share/games/0ad/
+      - make -C build/workspaces/gcc config=release -j$FLATPAK_BUILDER_N_JOBS
     post-install:
       - mkdir -p /app/share/games/0ad
       - mv binaries/system/lib* /app/lib/
@@ -163,19 +169,19 @@ modules:
     sources:
       # download as file instead of as archive so we can use the last modified date for the release section of the metainfo file
       - type: file
-        url: https://releases.wildfiregames.com/0ad-0.0.26-alpha-unix-build.tar.xz
-        sha256: 2e1c6df7e3312e77c5f82788664cffc3a78d3bf60606c00039275e1d13c0ee4b
+        url: https://releases.wildfiregames.com/0ad-0.27.0-unix-build.tar.xz
+        sha256: aa94857009750d5f61dbf016bc150e3bdcbdb3acdfc8ad20b73ab8b43e9a1ba6
         x-checker-data:
           type: anitya
           project-id: 5830
-          url-template: https://releases.wildfiregames.com/0ad-$version-alpha-unix-build.tar.xz
+          url-template: https://releases.wildfiregames.com/0ad-$version-unix-build.tar.xz
       - type: archive
-        url: https://releases.wildfiregames.com/0ad-0.0.26-alpha-unix-data.tar.xz
-        sha256: b200e48558f882807910e3c686567b6a396248d9d418044ecfde090b05772d7d
+        url: https://releases.wildfiregames.com/0ad-0.27.0-unix-data.tar.xz
+        sha256: 3e48855ab8e1ef81270338462c8270b015213f14f5e054aab92ad74d5ea59dea
         x-checker-data:
           type: anitya
           project-id: 5830
-          url-template: https://releases.wildfiregames.com/0ad-$version-alpha-unix-data.tar.xz
+          url-template: https://releases.wildfiregames.com/0ad-$version-unix-data.tar.xz
       - type: shell
         commands:
           - tar -xf *.tar.xz --strip 1
@@ -183,4 +189,14 @@ modules:
             -d "=" -f 2 | cut -d "\"" -f 2) && date=$(stat -c %y *.tar.xz | cut -d
             " " -f 1) && sed -e "s|</description>|</description><releases><release
             version=\"$version\" date=\"$date\"/></releases>|g" -i build/resources/0ad.appdata.xml
+      - type: patch
+        strip-components: 1
+        options: 
+          - -l
+          - --force
+        paths:
+          - patches/add-missing-header-in-KeyName.patch
+          - patches/allow-build-with-root.patch
+          - patches/fix-bindir.patch
+          - patches/fix-mozjs-i386-ftbfs.patch
 
