@@ -1,0 +1,62 @@
+From e3c359202cf31401c10dbd15c43f3cd4e147816f Mon Sep 17 00:00:00 2001
+From: AFCMS <afcm.contact@gmail.com>
+Date: Mon, 10 Feb 2025 16:46:02 +0100
+Subject: [PATCH 2/2] Improve the software center display of the application
+
+- OARS content rating have been updated to version 1.1
+- Touch Screens, Keyboard, Mouse have been marked as supported
+- Laptop screens and bigger are marked as required to the minimum width of 1024 required by the game
+- Fixes the device compatibility page on GNOME Software.
+- added a "0AD" keyword to  fix an issue with Flathub search feature where searching for "0AD" instead of "0 A.D." returns no results.
+---
+ build/resources/0ad.appdata.xml | 15 ++++++++++++++-
+ 1 file changed, 14 insertions(+), 1 deletion(-)
+
+diff --git a/build/resources/0ad.appdata.xml b/build/resources/0ad.appdata.xml
+index 5fff2e1f8a..9fc9b669df 100644
+--- a/build/resources/0ad.appdata.xml
++++ b/build/resources/0ad.appdata.xml
+@@ -80,6 +80,7 @@
+   <update_contact>webmaster@wildfiregames.com</update_contact>
+   <keywords>
+     <keyword>RTS</keyword>
++    <keyword>0AD</keyword>
+     <keyword>Realtime Strategy</keyword>
+     <keyword>Economic Simulation Game</keyword>
+     <keyword>History</keyword>
+@@ -105,12 +106,23 @@
+     <keyword>Seleucids</keyword>
+     <keyword>Spartans</keyword>
+   </keywords>
+-  <content_rating type="oars-1.0">
++  <requires>
++    <display_length compare="ge">1024</display_length>
++  </requires>
++  <supports>
++    <control>pointing</control>
++    <control>keyboard</control>
++    <control>touch</control>
++    <internet>offline-only</internet>
++  </supports>
++  <content_rating type="oars-1.1">
+     <content_attribute id="violence-cartoon">none</content_attribute>
+     <content_attribute id="violence-fantasy">none</content_attribute>
+     <content_attribute id="violence-realistic">intense</content_attribute>
+     <content_attribute id="violence-bloodshed">moderate</content_attribute>
+     <content_attribute id="violence-sexual">none</content_attribute>
++    <content_attribute id="violence-desecration">none</content_attribute>
++    <content_attribute id="violence-slavery">none</content_attribute>
+     <content_attribute id="drugs-alcohol">none</content_attribute>
+     <content_attribute id="drugs-narcotics">none</content_attribute>
+     <content_attribute id="drugs-tobacco">none</content_attribute>
+@@ -125,6 +137,7 @@
+     <content_attribute id="social-location">none</content_attribute>
+     <content_attribute id="social-contacts">none</content_attribute>
+     <content_attribute id="money-purchasing">none</content_attribute>
++    <content_attribute id="money-advertising">none</content_attribute>
+     <content_attribute id="money-gambling">none</content_attribute>
+   </content_rating>
+   <provides>
+-- 
+2.47.1
+

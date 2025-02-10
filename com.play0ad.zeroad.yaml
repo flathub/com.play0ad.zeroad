@@ -187,4 +187,5 @@ modules:
           - patches/fix-bindir.patch
           - patches/fix-mozjs-i386-ftbfs.patch
           - patches/patch-metainfo-file-to-to-match-the-new-requirements.patch
+          - patches/improve-the-software-center-display-of-the-application.patch 
 
