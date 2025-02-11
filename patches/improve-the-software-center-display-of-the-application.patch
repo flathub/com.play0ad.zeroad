@@ -1,4 +1,4 @@
-From e3c359202cf31401c10dbd15c43f3cd4e147816f Mon Sep 17 00:00:00 2001
+From 147494b66805679af403acf765308d81be195091 Mon Sep 17 00:00:00 2001
 From: AFCMS <afcm.contact@gmail.com>
 Date: Mon, 10 Feb 2025 16:46:02 +0100
 Subject: [PATCH 2/2] Improve the software center display of the application
@@ -13,7 +13,7 @@ Subject: [PATCH 2/2] Improve the software center display of the application
  1 file changed, 14 insertions(+), 1 deletion(-)
 
 diff --git a/build/resources/0ad.appdata.xml b/build/resources/0ad.appdata.xml
-index 5fff2e1f8a..9fc9b669df 100644
+index b01c3dc054..685cfc21d8 100644
 --- a/build/resources/0ad.appdata.xml
 +++ b/build/resources/0ad.appdata.xml
 @@ -80,6 +80,7 @@
@@ -58,5 +58,5 @@ index 5fff2e1f8a..9fc9b669df 100644
    </content_rating>
    <provides>
 -- 
-2.47.1
+2.47.1.windows.2
 

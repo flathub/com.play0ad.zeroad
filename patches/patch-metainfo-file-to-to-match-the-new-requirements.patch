@@ -1,4 +1,4 @@
-From d32eb3c8f163ab26f30fb7da6496b9a416fcacd6 Mon Sep 17 00:00:00 2001
+From 3bc602edc597ac1e64125fdbe49f7bdb36e515c3 Mon Sep 17 00:00:00 2001
 From: Stan <stan@wildfiregames.com>
 Date: Sun, 9 Feb 2025 13:31:54 +0100
 Subject: [PATCH 1/2] Patch metainfo file to to match the new requirements
@@ -8,7 +8,7 @@ Subject: [PATCH 1/2] Patch metainfo file to to match the new requirements
  1 file changed, 52 insertions(+), 11 deletions(-)
 
 diff --git a/build/resources/0ad.appdata.xml b/build/resources/0ad.appdata.xml
-index 9b63a1ff5a..5fff2e1f8a 100644
+index 9b63a1ff5a..b01c3dc054 100644
 --- a/build/resources/0ad.appdata.xml
 +++ b/build/resources/0ad.appdata.xml
 @@ -1,12 +1,19 @@
@@ -25,10 +25,10 @@ index 9b63a1ff5a..5fff2e1f8a 100644
    <metadata_license>CC-BY-SA-3.0</metadata_license>
    <name>0 A.D.</name>
 -  <summary>Real-Time Strategy Game of Ancient Warfare</summary>
-+  <summary>A real time strategy game</summary>
++  <summary>Open-Source Real Time Strategy game</summary>
 +  <branding>
-+    <color type="primary" scheme_preference="light">#9a3334</color>
-+    <color type="primary" scheme_preference="dark">#ca4849</color>
++    <color type="primary" scheme_preference="light">#eeeeee</color>
++    <color type="primary" scheme_preference="dark">#313131</color>
 +  </branding>
    <description>
      <p>
@@ -115,5 +115,5 @@ index 9b63a1ff5a..5fff2e1f8a 100644
 +  </provides>
  </component>
 -- 
-2.47.1
+2.47.1.windows.2
 
