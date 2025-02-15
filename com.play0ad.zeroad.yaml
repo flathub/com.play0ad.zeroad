@@ -10,7 +10,6 @@ command: 0ad
 finish-args:
   - --socket=wayland
   - --socket=fallback-x11
-  - --device=shm
   - --share=ipc
   - --device=dri
   - --socket=pulseaudio

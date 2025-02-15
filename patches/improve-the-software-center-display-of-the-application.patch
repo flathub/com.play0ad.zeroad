@@ -1,4 +1,4 @@
-From 3251ac06995942cdc2848201aea87fcd6ab8bc33 Mon Sep 17 00:00:00 2001
+From 071a558b597ee1ffff1019df8b0f72ed817fc60c Mon Sep 17 00:00:00 2001
 From: AFCMS <afcm.contact@gmail.com>
 Date: Mon, 10 Feb 2025 16:46:02 +0100
 Subject: [PATCH 2/2] Improve the software center display of the application
@@ -13,7 +13,7 @@ Subject: [PATCH 2/2] Improve the software center display of the application
  1 file changed, 14 insertions(+), 1 deletion(-)
 
 diff --git a/build/resources/0ad.appdata.xml b/build/resources/0ad.appdata.xml
-index 682a7da4cc..d113116c52 100644
+index 58c647ec3c..b939c28dcf 100644
 --- a/build/resources/0ad.appdata.xml
 +++ b/build/resources/0ad.appdata.xml
 @@ -80,6 +80,7 @@
@@ -44,8 +44,8 @@ index 682a7da4cc..d113116c52 100644
      <content_attribute id="violence-realistic">intense</content_attribute>
      <content_attribute id="violence-bloodshed">moderate</content_attribute>
      <content_attribute id="violence-sexual">none</content_attribute>
-+    <content_attribute id="violence-desecration">none</content_attribute>
-+    <content_attribute id="violence-slavery">none</content_attribute>
++    <content_attribute id="violence-desecration">mild</content_attribute>
++    <content_attribute id="violence-slavery">mild</content_attribute>
      <content_attribute id="drugs-alcohol">none</content_attribute>
      <content_attribute id="drugs-narcotics">none</content_attribute>
      <content_attribute id="drugs-tobacco">none</content_attribute>

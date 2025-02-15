@@ -1,4 +1,4 @@
-From 9f5e7272f11cf7b684bdbbcaf64efaf09c0261a5 Mon Sep 17 00:00:00 2001
+From 261721b13d2448e5586da13c11f625aeee61b224 Mon Sep 17 00:00:00 2001
 From: Stan <stan@wildfiregames.com>
 Date: Sun, 9 Feb 2025 13:31:54 +0100
 Subject: [PATCH 1/2] Patch metainfo file to to match the new requirements
@@ -8,7 +8,7 @@ Subject: [PATCH 1/2] Patch metainfo file to to match the new requirements
  1 file changed, 52 insertions(+), 11 deletions(-)
 
 diff --git a/build/resources/0ad.appdata.xml b/build/resources/0ad.appdata.xml
-index 9b63a1ff5a..682a7da4cc 100644
+index 9b63a1ff5a..58c647ec3c 100644
 --- a/build/resources/0ad.appdata.xml
 +++ b/build/resources/0ad.appdata.xml
 @@ -1,12 +1,19 @@
@@ -42,7 +42,7 @@ index 9b63a1ff5a..682a7da4cc 100644
        Macedonia), two of the kingdoms of Alexander the Great's successors
        (Seleucids and Ptolemaic Egyptians), two Celtic tribes (Britons and
 -      Gauls), the Romans, the Persians, the Iberians, the Carthaginians, the
-+      Gauls), the Romans, the Persians, the Iberians, the Carthaginians, the Hans, the
++      Gauls), the Romans, the Persians, the Iberians, the Carthaginians, the Han, the
        Mauryas and the Kushites.
        Each civilization is complete with substantially unique artwork,
        technologies and civilization bonuses.
@@ -98,7 +98,7 @@ index 9b63a1ff5a..682a7da4cc 100644
      <keyword>Britons</keyword>
      <keyword>Carthaginians</keyword>
      <keyword>Gauls</keyword>
-+    <keyword>Hans</keyword>
++    <keyword>Han</keyword>
      <keyword>Iberians</keyword>
      <keyword>Kushites</keyword>
      <keyword>Macedonians</keyword>
