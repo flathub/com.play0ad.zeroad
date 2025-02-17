@@ -182,10 +182,10 @@ modules:
           - -l
           - --force
         paths:
-          - patches/add-missing-header-in-KeyName.patch
           - patches/allow-build-with-root.patch
           - patches/fix-bindir.patch
           - patches/patch-metainfo-file-to-to-match-the-new-requirements.patch
           - patches/improve-the-software-center-display-of-the-application.patch
           - patches/fixes-out-of-bounds-during-GL-buffer-binding.patch
-          - patches/disable-spidermonkey-debug-build.patch
+          - patches/0006-Disable-SpiderMonkey-s-debug-build.patch
+          - patches/0007-Update-the-metadata.patch
