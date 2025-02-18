@@ -1,0 +1,60 @@
+From 1b258f51e4cf20b915c43d2ca968e4957f3ebba2 Mon Sep 17 00:00:00 2001
+From: Stan <stan@wildfiregames.com>
+Date: Tue, 18 Feb 2025 10:52:10 +0100
+Subject: [PATCH] =?UTF-8?q?=E2=9A=A1=EF=B8=8F=20Disable=20SpiderMonkey's?=
+ =?UTF-8?q?=20debug=20build.?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ libraries/source/spidermonkey/build.sh | 19 -------------------
+ 1 file changed, 19 deletions(-)
+
+diff --git a/libraries/source/spidermonkey/build.sh b/libraries/source/spidermonkey/build.sh
+index cb895eee85..1a13ca5fc9 100755
+--- a/libraries/source/spidermonkey/build.sh
++++ b/libraries/source/spidermonkey/build.sh
+@@ -133,17 +133,6 @@ rm -Rf "${FOLDER}"
+ 		${CTARGET:+--target=${CTARGET}}"
+ 
+ 	# Build
+-	# Debug (broken on FreeBSD)
+-	if [ "${OS}" != "FreeBSD" ]; then
+-		# shellcheck disable=SC2086
+-		MOZCONFIG="$(pwd)/../mozconfig" \
+-		MOZCONFIG_OPTIONS="${CONF_OPTS} \
+-			--enable-debug \
+-			--disable-optimize \
+-			--enable-gczeal" \
+-		BUILD_DIR="build-debug" \
+-			./mach build ${JOBS}
+-	fi
+ 	# Release
+ 	# shellcheck disable=SC2086
+ 	MOZCONFIG="$(pwd)/../mozconfig" \
+@@ -197,11 +186,6 @@ fi
+ mkdir include-release
+ cp -R -L "${FOLDER}"/build-release/dist/include/* include-release/
+ 
+-if [ "${OS}" != "FreeBSD" ]; then
+-	mkdir include-debug
+-	cp -R -L "${FOLDER}"/build-debug/dist/include/* include-debug/
+-fi
+-
+ # These align the ligns below, making it easier to check for mistakes.
+ DEB="debug"
+ REL="release"
+@@ -229,9 +213,6 @@ elif [ "${OS}" = "Windows_NT" ]; then
+ else
+ 	# Copy shared libs to lib/, they will also be copied to binaries/system, so the compiler and executable (resp.) can find them.
+ 	cp -L "${FOLDER}/build-${REL}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${REL}${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-${REL}${LIB_SUFFIX}"
+-	if [ "${OS}" != "FreeBSD" ]; then
+-		cp -L "${FOLDER}/build-${DEB}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${DEB}${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-${DEB}${LIB_SUFFIX}"
+-	fi
+ fi
+ 
+ # cleanup
+-- 
+2.47.1.windows.2
+
