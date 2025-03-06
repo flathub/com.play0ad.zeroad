@@ -171,7 +171,7 @@ modules:
           url-template: https://jenkins.wildfiregames.com/job/0ad-bundles/lastSuccessfulBuild/artifact/0ad-$version-unix-build.tar.xz
       - type: archive
         url: https://jenkins.wildfiregames.com/job/0ad-bundles/lastSuccessfulBuild/artifact/0ad-0.28.0dev-unix-data.tar.xz
-        sha256: f7f46b1f5ec699d7838c589b5b59339b
+        sha256: 189a0dd5a8f206d52d389f931c6a186fb71bb2f13c03e434aeecf2b8e1e55758
         x-checker-data:
           type: anitya
           project-id: 5830
