@@ -164,7 +164,7 @@ modules:
     sources:
       - type: archive
         url: https://jenkins.wildfiregames.com/job/0ad-bundles/lastSuccessfulBuild/artifact/0ad-0.28.0dev-unix-build.tar.xz
-        sha256: 9d98dd7559d084df79f2629c7597ef51
+        sha256: aa954cfc1594223f15667c447ef22354db3edf19d1e2144dd32f3198ad093fe7
         x-checker-data:
           type: anitya
           project-id: 5830
