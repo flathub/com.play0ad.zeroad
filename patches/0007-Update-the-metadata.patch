@@ -1,23 +1,26 @@
-From 05d6bc1b9113c56dfebb69d0a0992d50b879e76b Mon Sep 17 00:00:00 2001
+From 6d0d87843a8e11e1a859b76f9af06f046b3b949e Mon Sep 17 00:00:00 2001
 From: Stanislas Dolcini <stanislas.dolcini@gmail.com>
-Date: Mon, 17 Feb 2025 15:01:13 +0100
-Subject: [PATCH] =?UTF-8?q?=F0=9F=93=9D=20Update=20the=20metadata.?=
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Date: Thu, 6 Mar 2025 15:33:44 +0100
+Subject: [PATCH] Update the metadata.
 
 ---
- build/resources/0ad.appdata.xml | 6 ++++++
- 1 file changed, 6 insertions(+)
+ build/resources/0ad.appdata.xml | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
 diff --git a/build/resources/0ad.appdata.xml b/build/resources/0ad.appdata.xml
-index b939c28dcf..fceb39e4a4 100644
+index b939c28dcf..618d0a11f0 100644
 --- a/build/resources/0ad.appdata.xml
 +++ b/build/resources/0ad.appdata.xml
-@@ -40,6 +40,12 @@
+@@ -40,6 +40,18 @@
    <url type="translate">https://gitea.wildfiregames.com/0ad/0ad/wiki/Localization</url>
    <url type="donation">https://play0ad.com/community/donate/</url>
    <releases>
++    <release version="0.28.0-beta-2" date="2025-03-01">
++        <url type="details">https://jenkins.wildfiregames.com/job/0ad-bundles/lastSuccessfulBuild/artifact/</url>
++        <description>
++            <p>Wildfire Games proudly announces the release of 0 A.D. Release 28 Beta 2.</p>
++        </description>
++    </release>
 +    <release version="0.28.0-beta-1" date="2025-02-15">
 +        <url type="details">https://jenkins.wildfiregames.com/job/0ad-bundles/lastSuccessfulBuild/artifact/</url>
 +        <description>
@@ -27,6 +30,6 @@ index b939c28dcf..fceb39e4a4 100644
      <release version="0.27.0" date="2025-01-30">
          <url type="details">https://play0ad.com/new-release-0-a-d-alpha-27-agni/</url>
          <description>
--- 
+--
 2.47.1.windows.2
 
