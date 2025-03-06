@@ -164,14 +164,14 @@ modules:
     sources:
       - type: archive
         url: https://jenkins.wildfiregames.com/job/0ad-bundles/lastSuccessfulBuild/artifact/0ad-0.28.0dev-unix-build.tar.xz
-        sha256: 30c7f9879bca2277539aa4a3923b2c019177f78d0e7544ba6d05359e20f12289
+        sha1: 6075b5fa40de5cc6a11cf6666882852226c0500e
         x-checker-data:
           type: anitya
           project-id: 5830
           url-template: https://jenkins.wildfiregames.com/job/0ad-bundles/lastSuccessfulBuild/artifact/0ad-$version-unix-build.tar.xz
       - type: archive
         url: https://jenkins.wildfiregames.com/job/0ad-bundles/lastSuccessfulBuild/artifact/0ad-0.28.0dev-unix-data.tar.xz
-        sha256: 91ee122172ef34d37162a902dc5bb5a67ae28494fcc3f1b396222eb01875fe12
+        sha1: 65d6cbba70206abaf10069b644ffd06d0ba051f5
         x-checker-data:
           type: anitya
           project-id: 5830
@@ -182,10 +182,7 @@ modules:
           - -l
           - --force
         paths:
-          - patches/allow-build-with-root.patch
           - patches/fix-bindir.patch
-          - patches/patch-metainfo-file-to-to-match-the-new-requirements.patch
-          - patches/improve-the-software-center-display-of-the-application.patch
           - patches/fixes-out-of-bounds-during-GL-buffer-binding.patch
           - patches/0006-Disable-SpiderMonkey-s-debug-build.patch
           - patches/0007-Update-the-metadata.patch
