@@ -1,18 +1,14 @@
-From 1b258f51e4cf20b915c43d2ca968e4957f3ebba2 Mon Sep 17 00:00:00 2001
+From 994e11fd2dae57ada5cba26d65e4cffca4cb36d3 Mon Sep 17 00:00:00 2001
 From: Stan <stan@wildfiregames.com>
-Date: Tue, 18 Feb 2025 10:52:10 +0100
-Subject: [PATCH] =?UTF-8?q?=E2=9A=A1=EF=B8=8F=20Disable=20SpiderMonkey's?=
- =?UTF-8?q?=20debug=20build.?=
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Date: Sat, 19 Apr 2025 12:02:39 +0200
+Subject: [PATCH 3/4] :zap: Disable SpiderMonkey debug build
 
 ---
  libraries/source/spidermonkey/build.sh | 19 -------------------
  1 file changed, 19 deletions(-)
 
 diff --git a/libraries/source/spidermonkey/build.sh b/libraries/source/spidermonkey/build.sh
-index cb895eee85..1a13ca5fc9 100755
+index 78d2ea2264..0fd532e994 100755
 --- a/libraries/source/spidermonkey/build.sh
 +++ b/libraries/source/spidermonkey/build.sh
 @@ -133,17 +133,6 @@ rm -Rf "${FOLDER}"
@@ -56,5 +52,5 @@ index cb895eee85..1a13ca5fc9 100755
  
  # cleanup
 -- 
-2.47.1.windows.2
+2.49.0
 

@@ -7,6 +7,8 @@ sdk-extensions:
   - org.freedesktop.Sdk.Extension.rust-stable
   - org.freedesktop.Sdk.Extension.llvm18
 command: 0ad
+env:
+  TAR_OPTIONS: "--no-same-owner"
 finish-args:
   - --socket=wayland
   - --socket=fallback-x11
@@ -164,14 +166,14 @@ modules:
     sources:
       - type: archive
         url: https://jenkins.wildfiregames.com/job/0ad-bundles/lastSuccessfulBuild/artifact/0ad-0.28.0dev-unix-build.tar.xz
-        sha1: 6075b5fa40de5cc6a11cf6666882852226c0500e
+        sha1: d3b2886edead554e7c046eb42e9381e3bd07b91f
         x-checker-data:
           type: anitya
           project-id: 5830
           url-template: https://jenkins.wildfiregames.com/job/0ad-bundles/lastSuccessfulBuild/artifact/0ad-$version-unix-build.tar.xz
       - type: archive
         url: https://jenkins.wildfiregames.com/job/0ad-bundles/lastSuccessfulBuild/artifact/0ad-0.28.0dev-unix-data.tar.xz
-        sha1: 65d6cbba70206abaf10069b644ffd06d0ba051f5
+        sha1: f5bc5ddf7c794a401f7815552ed0fee1eeb385de
         x-checker-data:
           type: anitya
           project-id: 5830
@@ -182,7 +184,7 @@ modules:
           - -l
           - --force
         paths:
-          - patches/fix-bindir.patch
-          - patches/fixes-out-of-bounds-during-GL-buffer-binding.patch
-          - patches/0006-Disable-SpiderMonkey-s-debug-build.patch
-          - patches/0007-Update-the-metadata.patch
+          - patches/0001-Fix-search-path-for-pyrogenesis.patch
+          - patches/0002-bookmark-Update-meta-data-to-beta-5.patch
+          - patches/0003-zap-Disable-spidermonkey-debug-build.patch
+          - patches/0004-bug-Ignore-archive-ownership.patch

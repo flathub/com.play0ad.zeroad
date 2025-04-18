@@ -1,0 +1,95 @@
+From 9e232aaa53de73dba741068624134976e5e12ae1 Mon Sep 17 00:00:00 2001
+From: Stan <stan@wildfiregames.com>
+Date: Sat, 19 Apr 2025 13:26:15 +0200
+Subject: [PATCH 4/4] :bug: Ignore archive ownership
+
+---
+ libraries/source/cxxtest-4.4/build.sh   | 2 +-
+ libraries/source/fcollada/build.sh      | 2 +-
+ libraries/source/nvtt/build.sh          | 2 +-
+ libraries/source/premake-core/build.sh  | 2 +-
+ libraries/source/spidermonkey/build.sh  | 2 +-
+ libraries/source/spirv-reflect/build.sh | 2 +-
+ 6 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/libraries/source/cxxtest-4.4/build.sh b/libraries/source/cxxtest-4.4/build.sh
+index fe953dd108..167bc7f29e 100755
+--- a/libraries/source/cxxtest-4.4/build.sh
++++ b/libraries/source/cxxtest-4.4/build.sh
+@@ -42,7 +42,7 @@ fi
+ 
+ # unpack
+ rm -Rf "cxxtest-${PV}"
+-"${TAR}" -xf "cxxtest-${PV}.tar.gz"
++"${TAR}" --no-same-owner -xf "cxxtest-${PV}.tar.gz"
+ 
+ # patch
+ patch -d "cxxtest-${PV}" -p1 <patches/0001-Add-Debian-python3-patch.patch
+diff --git a/libraries/source/fcollada/build.sh b/libraries/source/fcollada/build.sh
+index 2e42ba4647..b098f29917 100755
+--- a/libraries/source/fcollada/build.sh
++++ b/libraries/source/fcollada/build.sh
+@@ -44,7 +44,7 @@ fi
+ 
+ # unpack
+ rm -Rf fcollada-${PV}
+-"${TAR}" xf fcollada-${PV}.tar.xz
++"${TAR}" --no-same-owner -xf fcollada-${PV}.tar.xz
+ 
+ # build
+ (
+diff --git a/libraries/source/nvtt/build.sh b/libraries/source/nvtt/build.sh
+index 8a00df89f3..6bdc558850 100755
+--- a/libraries/source/nvtt/build.sh
++++ b/libraries/source/nvtt/build.sh
+@@ -44,7 +44,7 @@ fi
+ 
+ # unpack
+ rm -Rf nvtt-${PV}
+-"${TAR}" xf nvtt-${PV}.tar.xz
++"${TAR}" --no-same-owner -xf nvtt-${PV}.tar.xz
+ 
+ # build
+ (
+diff --git a/libraries/source/premake-core/build.sh b/libraries/source/premake-core/build.sh
+index d779c91783..db5ee0e8ab 100755
+--- a/libraries/source/premake-core/build.sh
++++ b/libraries/source/premake-core/build.sh
+@@ -45,7 +45,7 @@ fi
+ 
+ # unpack
+ rm -Rf "premake-core-${PV}"
+-"${TAR}" -xf "premake-core-${PV}.tar.gz"
++"${TAR}" --no-same-owner -xf "premake-core-${PV}.tar.gz"
+ 
+ # patch
+ # https://github.com/premake/premake-core/issues/2338
+diff --git a/libraries/source/spidermonkey/build.sh b/libraries/source/spidermonkey/build.sh
+index 0fd532e994..f37b5ffab5 100755
+--- a/libraries/source/spidermonkey/build.sh
++++ b/libraries/source/spidermonkey/build.sh
+@@ -49,7 +49,7 @@ fi
+ 
+ # unpack
+ rm -Rf "${FOLDER}"
+-"${TAR}" xfJ "${FOLDER}.tar.xz"
++"${TAR}" --no-same-owner -xJf "${FOLDER}.tar.xz"
+ 
+ # patch
+ (
+diff --git a/libraries/source/spirv-reflect/build.sh b/libraries/source/spirv-reflect/build.sh
+index 18874174c1..1a6fb8fb53 100755
+--- a/libraries/source/spirv-reflect/build.sh
++++ b/libraries/source/spirv-reflect/build.sh
+@@ -42,7 +42,7 @@ fi
+ 
+ # unpack
+ rm -Rf "SPIRV-Reflect-vulkan-sdk-${PV}"
+-"${TAR}" xf "vulkan-sdk-${PV}.tar.gz"
++"${TAR}" --no-same-owner -xf "vulkan-sdk-${PV}.tar.gz"
+ 
+ # configure
+ cmake -B build -S "SPIRV-Reflect-vulkan-sdk-${PV}" \
+-- 
+2.49.0
+
