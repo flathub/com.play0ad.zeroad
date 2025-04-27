@@ -1,7 +1,7 @@
-From 071a558b597ee1ffff1019df8b0f72ed817fc60c Mon Sep 17 00:00:00 2001
+From 3ee33c99c5daf41b275ef4634073059ce32a95ea Mon Sep 17 00:00:00 2001
 From: AFCMS <afcm.contact@gmail.com>
 Date: Mon, 10 Feb 2025 16:46:02 +0100
-Subject: [PATCH 2/2] Improve the software center display of the application
+Subject: [PATCH 06/10] Improve the software center display of the application
 
 - OARS content rating have been updated to version 1.1
 - Touch Screens, Keyboard, Mouse have been marked as supported
@@ -58,5 +58,5 @@ index 58c647ec3c..b939c28dcf 100644
    </content_rating>
    <provides>
 -- 
-2.47.1
+2.49.0
 

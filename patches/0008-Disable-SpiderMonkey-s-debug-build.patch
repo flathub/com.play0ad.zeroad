@@ -1,7 +1,7 @@
-From 4457b89d7518af42ad49f2f16224b217e04b96b7 Mon Sep 17 00:00:00 2001
+From 7c3d7c7b562d6efc6abeb99487efe3bb5cff922f Mon Sep 17 00:00:00 2001
 From: Stan <stan@wildfiregames.com>
 Date: Mon, 10 Feb 2025 21:24:51 +0100
-Subject: [PATCH] Disable SpiderMonkey's debug build
+Subject: [PATCH 08/10] Disable SpiderMonkey's debug build
 
 ---
  libraries/source/spidermonkey/build.sh | 18 ------------------
@@ -51,5 +51,5 @@ index 0dc66e0184..1c86ea4dbc 100755
  
  # cleanup
 -- 
-2.47.1
+2.49.0
 
