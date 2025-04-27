@@ -1,7 +1,7 @@
-From 261721b13d2448e5586da13c11f625aeee61b224 Mon Sep 17 00:00:00 2001
+From 67f8861fcf1f7de027258a9df39832059437c900 Mon Sep 17 00:00:00 2001
 From: Stan <stan@wildfiregames.com>
 Date: Sun, 9 Feb 2025 13:31:54 +0100
-Subject: [PATCH 1/2] Patch metainfo file to to match the new requirements
+Subject: [PATCH 05/10] Patch metainfo file to to match the new requirements
 
 ---
  build/resources/0ad.appdata.xml | 63 +++++++++++++++++++++++++++------
@@ -115,5 +115,5 @@ index 9b63a1ff5a..58c647ec3c 100644
 +  </provides>
  </component>
 -- 
-2.47.1
+2.49.0
 

@@ -1,0 +1,27 @@
+From 30f099d5271e15fe43b6cff0e6948cf38acc8322 Mon Sep 17 00:00:00 2001
+From: Vincent Cheng <vcheng@debian.org>
+Date: Sun, 27 Apr 2025 17:22:15 +0200
+Subject: [PATCH 03/10] Fix search path for pyrogenesis Modify launcher script
+ to execute /usr/games/pyrogenesis if /usr/games is not in the user's $PATH.
+
+---
+ build/resources/0ad.sh | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/build/resources/0ad.sh b/build/resources/0ad.sh
+index 5d2f0dde91..9e90ec0133 100755
+--- a/build/resources/0ad.sh
++++ b/build/resources/0ad.sh
+@@ -3,6 +3,9 @@
+ pyrogenesis=$(which pyrogenesis 2>/dev/null)
+ if [ -x "$pyrogenesis" ]; then
+ 	"$pyrogenesis" "$@"
++elif [ -x /usr/games/pyrogenesis ] ; then
++    # Fallback in case /usr/games is not in $PATH; see #679033 and LP: #1380737
++    /usr/games/pyrogenesis "$@"
+ else
+ 	echo "Error: pyrogenesis not found in ($PATH)"
+ 	exit 1
+-- 
+2.49.0
+

@@ -1,8 +1,14 @@
-Description: Fix broken mozjs patch specific to i386
-Author: Vincent Cheng <vcheng@debian.org>
-Forwarded: https://gitea.wildfiregames.com/0ad/0ad/issues/7575
-Last-Update: 2025-02-01
+From c158a849a227087e58cb53c59cefc2ae6bc80be3 Mon Sep 17 00:00:00 2001
+From: Vincent Cheng <vcheng@debian.org>
+Date: Sun, 27 Apr 2025 17:22:22 +0200
+Subject: [PATCH 04/10] Fix broken mozjs patch specific to i386
 
+---
+ libraries/source/spidermonkey/patches/FixFpNormIssue.diff | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
+
+diff --git a/libraries/source/spidermonkey/patches/FixFpNormIssue.diff b/libraries/source/spidermonkey/patches/FixFpNormIssue.diff
+index ef4d4d96b6..02bf309cdb 100644
 --- a/libraries/source/spidermonkey/patches/FixFpNormIssue.diff
 +++ b/libraries/source/spidermonkey/patches/FixFpNormIssue.diff
 @@ -1,6 +1,6 @@
@@ -26,3 +32,6 @@ Last-Update: 2025-02-01
  @@ -630,6 +634,53 @@
   	return ((double)(x + 0x1.8p52) - 0x1.8p52);
   }
+-- 
+2.49.0
+

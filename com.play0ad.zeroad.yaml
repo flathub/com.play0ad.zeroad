@@ -182,11 +182,13 @@ modules:
           - -l
           - --force
         paths:
-          - patches/add-missing-header-in-KeyName.patch
-          - patches/allow-build-with-root.patch
-          - patches/fix-bindir.patch
-          - patches/fix-mozjs-i386-ftbfs.patch
-          - patches/patch-metainfo-file-to-to-match-the-new-requirements.patch
-          - patches/improve-the-software-center-display-of-the-application.patch
-          - patches/fixes-out-of-bounds-during-GL-buffer-binding.patch
-          - patches/disable-spidermonkey-debug-build.patch
+          - patches/0001-Add-missing-header-in-KeyName.patch
+          - patches/0002-Allow-building-0ad-as-root-fakeroot.patch
+          - patches/0003-Fix-search-path-for-pyrogenesis-Modify-launcher-scri.patch
+          - patches/0004-Fix-broken-mozjs-patch-specific-to-i386.patch
+          - patches/0005-Patch-metainfo-file-to-to-match-the-new-requirements.patch
+          - patches/0006-Improve-the-software-center-display-of-the-applicati.patch
+          - patches/0007-Fixes-out-of-bounds-during-GL-buffer-binding.patch
+          - patches/0008-Disable-SpiderMonkey-s-debug-build.patch
+          - patches/0009-bug-Ignore-archive-ownership.patch
+          - patches/0010-Add-workaround-to-turn-off-nursery-size-heuristic.patch
