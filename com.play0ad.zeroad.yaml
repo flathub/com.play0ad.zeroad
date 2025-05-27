@@ -65,8 +65,8 @@ modules:
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        sha256: 985de16d2e5449c3ba0d3663a0c76cb2bff82472a0eb7a306107d93f44586ffe
-        url: https://miniupnp.tuxfamily.org/files/miniupnpc-2.3.2.tar.gz
+        sha256: d52a0afa614ad6c088cc9ddff1ae7d29c8c595ac5fdd321170a05f41e634bd1a
+        url: https://miniupnp.tuxfamily.org/files/miniupnpc-2.3.3.tar.gz
         x-checker-data:
           type: anitya
           project-id: 1986
