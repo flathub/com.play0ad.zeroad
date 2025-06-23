@@ -143,6 +143,8 @@ modules:
     buildsystem: simple
     build-options:
       append-path: /usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm18/bin
+      env:
+        TAR_OPTIONS: "--no-same-owner"
     build-commands:
       - rustc --version
       - python3 --version
@@ -163,15 +165,15 @@ modules:
       - mv binaries/data/* /app/share/games/0ad
     sources:
       - type: archive
-        url: https://releases.wildfiregames.com/0ad-0.27.0-unix-build.tar.xz
-        sha256: aa94857009750d5f61dbf016bc150e3bdcbdb3acdfc8ad20b73ab8b43e9a1ba6
+        url: https://releases.wildfiregames.com/rc/0ad-0.27.1-rc1-unix-build.tar.xz
+        sha1: c04d64da92ad69449080ed40c9f67c0c86e9eb01
         x-checker-data:
           type: anitya
           project-id: 5830
           url-template: https://releases.wildfiregames.com/0ad-$version-unix-build.tar.xz
       - type: archive
-        url: https://releases.wildfiregames.com/0ad-0.27.0-unix-data.tar.xz
-        sha256: 3e48855ab8e1ef81270338462c8270b015213f14f5e054aab92ad74d5ea59dea
+        url: https://releases.wildfiregames.com/rc/0ad-0.27.1-rc1-unix-data.tar.xz
+        sha1: da359526ca4ebcd4656d67f503d661758019d390
         x-checker-data:
           type: anitya
           project-id: 5830
@@ -182,13 +184,5 @@ modules:
           - -l
           - --force
         paths:
-          - patches/0001-Add-missing-header-in-KeyName.patch
-          - patches/0002-Allow-building-0ad-as-root-fakeroot.patch
-          - patches/0003-Fix-search-path-for-pyrogenesis-Modify-launcher-scri.patch
-          - patches/0004-Fix-broken-mozjs-patch-specific-to-i386.patch
-          - patches/0005-Patch-metainfo-file-to-to-match-the-new-requirements.patch
-          - patches/0006-Improve-the-software-center-display-of-the-applicati.patch
-          - patches/0007-Fixes-out-of-bounds-during-GL-buffer-binding.patch
-          - patches/0008-Disable-SpiderMonkey-s-debug-build.patch
-          - patches/0009-bug-Ignore-archive-ownership.patch
-          - patches/0010-Add-workaround-to-turn-off-nursery-size-heuristic.patch
+          - patches/0001-Fix-search-path-for-pyrogenesis-Modify-launcher-scri.patch
+          - patches/0002-Disable-SpiderMonkey-s-debug-build.patch
