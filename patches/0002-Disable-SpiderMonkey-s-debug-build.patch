@@ -1,35 +1,34 @@
-From 994e11fd2dae57ada5cba26d65e4cffca4cb36d3 Mon Sep 17 00:00:00 2001
+From 7c3d7c7b562d6efc6abeb99487efe3bb5cff922f Mon Sep 17 00:00:00 2001
 From: Stan <stan@wildfiregames.com>
-Date: Sat, 19 Apr 2025 12:02:39 +0200
-Subject: [PATCH 3/4] :zap: Disable SpiderMonkey debug build
+Date: Mon, 10 Feb 2025 21:24:51 +0100
+Subject: [PATCH 08/10] Disable SpiderMonkey's debug build
 
 ---
- libraries/source/spidermonkey/build.sh | 19 -------------------
- 1 file changed, 19 deletions(-)
+ libraries/source/spidermonkey/build.sh | 18 ------------------
+ 1 file changed, 18 deletions(-)
 
 diff --git a/libraries/source/spidermonkey/build.sh b/libraries/source/spidermonkey/build.sh
-index 78d2ea2264..0fd532e994 100755
+index 0dc66e0184..1c86ea4dbc 100755
 --- a/libraries/source/spidermonkey/build.sh
 +++ b/libraries/source/spidermonkey/build.sh
-@@ -133,17 +133,6 @@ rm -Rf "${FOLDER}"
+@@ -126,16 +126,6 @@ tar xfJ "${FOLDER}.tar.xz"
  		${CTARGET:+--target=${CTARGET}}"
  
  	# Build
 -	# Debug (broken on FreeBSD)
 -	if [ "${OS}" != "FreeBSD" ]; then
--		# shellcheck disable=SC2086
 -		MOZCONFIG="$(pwd)/../mozconfig" \
 -		MOZCONFIG_OPTIONS="${CONF_OPTS} \
 -			--enable-debug \
 -			--disable-optimize \
 -			--enable-gczeal" \
 -		BUILD_DIR="build-debug" \
--			./mach build ${JOBS}
+-			./mach build "${JOBS}"
 -	fi
  	# Release
- 	# shellcheck disable=SC2086
  	MOZCONFIG="$(pwd)/../mozconfig" \
-@@ -197,11 +186,6 @@ fi
+ 	MOZCONFIG_OPTIONS="${CONF_OPTS} \
+@@ -188,11 +178,6 @@ fi
  mkdir include-release
  cp -R -L "${FOLDER}"/build-release/dist/include/* include-release/
  
@@ -41,7 +40,7 @@ index 78d2ea2264..0fd532e994 100755
  # These align the ligns below, making it easier to check for mistakes.
  DEB="debug"
  REL="release"
-@@ -229,9 +213,6 @@ elif [ "${OS}" = "Windows_NT" ]; then
+@@ -220,9 +205,6 @@ elif [ "${OS}" = "Windows_NT" ]; then
  else
  	# Copy shared libs to lib/, they will also be copied to binaries/system, so the compiler and executable (resp.) can find them.
  	cp -L "${FOLDER}/build-${REL}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${REL}${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-${REL}${LIB_SUFFIX}"
