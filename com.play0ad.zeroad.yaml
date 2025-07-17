@@ -119,8 +119,8 @@ modules:
       cxxflags: -std=c++11
     sources:
       - type: archive
-        url: https://github.com/wxWidgets/wxWidgets/archive/v3.2.8.1.tar.gz
-        sha256: 65654b00e8d6901f53cee31b0175720620a4153f32bd95980d03aa4424a26978
+        url: https://github.com/wxWidgets/wxWidgets/archive/v3.3.0.tar.gz
+        sha256: 96f0097a6c7c900edfcee0ad71d85986a453affeb5db073aff045eda5b431653
         x-checker-data:
           type: anitya
           project-id: 5150
@@ -163,15 +163,15 @@ modules:
       - mv binaries/data/* /app/share/games/0ad
     sources:
       - type: archive
-        url: https://releases.wildfiregames.com/0ad-0.27.0-unix-build.tar.xz
-        sha256: aa94857009750d5f61dbf016bc150e3bdcbdb3acdfc8ad20b73ab8b43e9a1ba6
+        url: https://releases.wildfiregames.com/0ad-0.27.1-unix-build.tar.xz
+        sha256: a0a5355eeb5968d24f283770736150d974dafecba07754d4662707dc17016bfb
         x-checker-data:
           type: anitya
           project-id: 5830
           url-template: https://releases.wildfiregames.com/0ad-$version-unix-build.tar.xz
       - type: archive
-        url: https://releases.wildfiregames.com/0ad-0.27.0-unix-data.tar.xz
-        sha256: 3e48855ab8e1ef81270338462c8270b015213f14f5e054aab92ad74d5ea59dea
+        url: https://releases.wildfiregames.com/0ad-0.27.1-unix-data.tar.xz
+        sha256: 837e2d6ddf138b025fc02017245d7581a4bb84fd94b42c0e605d321b7017a998
         x-checker-data:
           type: anitya
           project-id: 5830
