@@ -165,15 +165,15 @@ modules:
       - mv binaries/data/* /app/share/games/0ad
     sources:
       - type: archive
-        url: https://releases.wildfiregames.com/rc/0ad-0.27.1-rc2-unix-build.tar.xz
-        sha1: 5a351e63fe3c95c412352e47f95d2cae79c333ce
+        url: https://releases.wildfiregames.com/0ad-0.27.1-unix-build.tar.xz
+        sha1: 1dbb863b0062298ed1def8cd53a243bc2e7c9f76
         x-checker-data:
           type: anitya
           project-id: 5830
           url-template: https://releases.wildfiregames.com/0ad-$version-unix-build.tar.xz
       - type: archive
-        url: https://releases.wildfiregames.com/rc/0ad-0.27.1-rc2-unix-data.tar.xz
-        sha1: 086298c532ee15dc578b9ff489b0fe395dc4bf03
+        url: https://releases.wildfiregames.com/0ad-0.27.1-unix-data.tar.xz
+        sha1: 36dc2f6dc9df3efa80c4eade7b87ae254cb46c7d
         x-checker-data:
           type: anitya
           project-id: 5830
