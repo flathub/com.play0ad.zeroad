@@ -28,9 +28,9 @@ modules:
       - ./b2 headers
       - ./b2 install
     sources:
-      - sha256: 46d9d2c06637b219270877c9e16155cbd015b6dc84349af064c088e9b5b12f7b
+      - sha256: 85a33fa22621b4f314f8e85e1a5e2a9363d22e4f4992925d4bb3bc631b5a0c7a
         type: archive
-        url: https://archives.boost.io/release/1.88.0/source/boost_1_88_0.tar.bz2
+        url: https://archives.boost.io/release/1.89.0/source/boost_1_89_0.tar.bz2
         x-checker-data:
           type: anitya
           project-id: 6845
@@ -119,8 +119,8 @@ modules:
       cxxflags: -std=c++11
     sources:
       - type: archive
-        url: https://github.com/wxWidgets/wxWidgets/archive/v3.2.8.1.tar.gz
-        sha256: 65654b00e8d6901f53cee31b0175720620a4153f32bd95980d03aa4424a26978
+        url: https://github.com/wxWidgets/wxWidgets/archive/v3.3.1.tar.gz
+        sha256: fcd4d256a247d465f9c25f439b8a46f8e370790597052046baf77a3f34d87c49
         x-checker-data:
           type: anitya
           project-id: 5150
@@ -144,7 +144,7 @@ modules:
     build-options:
       append-path: /usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm18/bin
       env:
-        TAR_OPTIONS: "--no-same-owner"
+        TAR_OPTIONS: --no-same-owner
     build-commands:
       - rustc --version
       - python3 --version
