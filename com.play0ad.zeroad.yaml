@@ -1,11 +1,11 @@
 ---
 app-id: com.play0ad.zeroad
 runtime: org.freedesktop.Platform
-runtime-version: '24.08'
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.rust-stable
-  - org.freedesktop.Sdk.Extension.llvm18
+  - org.freedesktop.Sdk.Extension.llvm20
 command: 0ad
 finish-args:
   - --socket=wayland
@@ -116,7 +116,7 @@ modules:
   - name: 0ad
     buildsystem: simple
     build-options:
-      append-path: /usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm18/bin
+      append-path: /usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm20/bin
       env:
         TAR_OPTIONS: "--no-same-owner"
     build-commands:
