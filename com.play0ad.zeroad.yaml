@@ -140,14 +140,14 @@ modules:
     sources:
       - type: archive
         url: https://releases.wildfiregames.com/0ad-0.27.1-unix-build.tar.xz
-        sha1: 1dbb863b0062298ed1def8cd53a243bc2e7c9f76
+        sha256: a0a5355eeb5968d24f283770736150d974dafecba07754d4662707dc17016bfb
         x-checker-data:
           type: anitya
           project-id: 5830
           url-template: https://releases.wildfiregames.com/0ad-$version-unix-build.tar.xz
       - type: archive
         url: https://releases.wildfiregames.com/0ad-0.27.1-unix-data.tar.xz
-        sha1: 36dc2f6dc9df3efa80c4eade7b87ae254cb46c7d
+        sha256: 837e2d6ddf138b025fc02017245d7581a4bb84fd94b42c0e605d321b7017a998
         x-checker-data:
           type: anitya
           project-id: 5830
