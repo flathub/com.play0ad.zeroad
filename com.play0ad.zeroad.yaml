@@ -119,8 +119,6 @@ modules:
       append-path: /usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm20/bin
       env:
         TAR_OPTIONS: "--no-same-owner"
-    config-opts:
-      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
     build-commands:
       - rustc --version
       - python3 --version
