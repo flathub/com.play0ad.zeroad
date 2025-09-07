@@ -97,6 +97,16 @@ modules:
           project-id: 11526
           url-template: https://github.com/fmtlib/fmt/archive/$version.tar.gz
 
+  - name: autoconf-2.13
+    config-opts:
+      - --program-suffix=-2.13
+    cleanup:
+      - '*'
+    sources:
+      - type: archive
+        url: https://ftp.gnu.org/gnu/autoconf/autoconf-2.13.tar.gz
+        sha256: f0611136bee505811e9ca11ca7ac188ef5323a8e2ef19cffd3edb3cf08fd791e
+
   # Required so we can use wxWidgets with openGL integration
   - shared-modules/glu/glu-9.json
 
