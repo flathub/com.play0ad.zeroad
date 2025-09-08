@@ -111,33 +111,17 @@ modules:
   - shared-modules/glu/glu-9.json
 
   - name: wxWidgets
-    rm-configure: true
     config-opts:
       - --with-gtk=3
       - --with-opengl
-    build-options:
-      cxxflags: -std=c++11
     sources:
       - type: archive
-        url: https://github.com/wxWidgets/wxWidgets/archive/v3.2.8.1.tar.gz
-        sha256: 65654b00e8d6901f53cee31b0175720620a4153f32bd95980d03aa4424a26978
+        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.3.1/wxWidgets-3.3.1.tar.bz2
+        sha256: f936c8d694f9c49a367a376f99c751467150a4ed7cbf8f4723ef19b2d2d9998d
         x-checker-data:
           type: anitya
           project-id: 5150
-          url-template: https://github.com/wxWidgets/wxWidgets/archive/v$version.tar.gz
-      - type: archive  # commit taken from wxWidget's git submodule
-        url: https://github.com/wxWidgets/Catch/archive/ee4acb6ae6e32a02bc012d197aa82b1ca7a493ab.zip
-        sha256: cdc951487c8c18d90eb0ad3f997a4845e045584c661281fd94de66f14ada4ba0
-        dest: 3rdparty/catch
-      - type: archive  # commit taken from wxWidget's git submodule
-        url: https://github.com/wxWidgets/nanosvg/archive/ccdb1995134d340a93fb20e3a3d323ccb3838dd0.zip
-        sha256: d45fb75b9652f45f3ab4e23e76d77c4a4db02939702d36def6fcd244fb0a44c6
-        dest: 3rdparty/nanosvg
-      - type: script
-        dest-filename: autogen.sh
-        commands:
-          - cp -p /usr/share/automake-*/config.{sub,guess} .
-          - autoconf -f -B build/autoconf_prepend-include
+          url-template: https://github.com/wxWidgets/wxWidgets/releases/download/v$version/wxWidgets-$version.tar.bz2
 
   - name: 0ad
     buildsystem: simple
