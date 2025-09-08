@@ -97,9 +97,6 @@ modules:
           project-id: 11526
           url-template: https://github.com/fmtlib/fmt/archive/$version.tar.gz
 
-  # Required so we can use wxWidgets with openGL integration
-  - shared-modules/glu/glu-9.json
-
   - name: wxWidgets
     config-opts:
       - --with-gtk=3
