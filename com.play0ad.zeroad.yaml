@@ -101,25 +101,17 @@ modules:
   - shared-modules/glu/glu-9.json
 
   - name: wxWidgets
-    rm-configure: true
     config-opts:
       - --with-gtk=3
       - --with-opengl
-    build-options:
-      cxxflags: -std=c++11
     sources:
       - type: archive
-        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.3.1/wxWidgets-3.3.1.tar.bz2
-        sha256: f936c8d694f9c49a367a376f99c751467150a4ed7cbf8f4723ef19b2d2d9998d
+        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.8/wxWidgets-3.2.8.tar.bz2
+        sha256: c74784904109d7229e6894c85cfa068f1106a4a07c144afd78af41f373ee0fe6
         x-checker-data:
           type: anitya
           project-id: 5150
           url-template: https://github.com/wxWidgets/wxWidgets/releases/download/v$version/wxWidgets-$version.tar.bz2
-      - type: script
-        dest-filename: autogen.sh
-        commands:
-          - cp -p /usr/share/automake-*/config.{sub,guess} .
-          - autoconf -f -B build/autoconf_prepend-include
 
   - name: 0ad
     buildsystem: simple
