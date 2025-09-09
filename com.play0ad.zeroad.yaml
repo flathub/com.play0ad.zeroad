@@ -36,6 +36,8 @@ modules:
           project-id: 6845
           stable-only: true
           url-template: https://archives.boost.io/release/$version/source/boost_${major}_${minor}_${patch}.tar.bz2
+          versions:
+            '<': '1.89' # 0ad a27.1 fails to build against 1.89
 
   - name: gloox
     sources:
