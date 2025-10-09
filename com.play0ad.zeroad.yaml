@@ -28,15 +28,14 @@ modules:
       - ./b2 headers
       - ./b2 install
     sources:
-      - sha256: 46d9d2c06637b219270877c9e16155cbd015b6dc84349af064c088e9b5b12f7b
+      - sha256: 85a33fa22621b4f314f8e85e1a5e2a9363d22e4f4992925d4bb3bc631b5a0c7a
         type: archive
-        url: https://archives.boost.io/release/1.88.0/source/boost_1_88_0.tar.bz2
+        url: https://archives.boost.io/release/1.89.0/source/boost_1_89_0.tar.bz2
         x-checker-data:
           type: anitya
           project-id: 6845
           stable-only: true
           url-template: https://archives.boost.io/release/$version/source/boost_${major}_${minor}_${patch}.tar.bz2
-          # 0ad a27.1 fails to build against v1.89
 
   - name: gloox
     sources:
@@ -162,3 +161,4 @@ modules:
         paths:
           - patches/0001-Fix-search-path-for-pyrogenesis-Modify-launcher-scri.patch
           - patches/0002-Disable-SpiderMonkey-s-debug-build.patch
+          - patches/0003-build-with-boost-1.89.patch
