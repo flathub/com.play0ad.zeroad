@@ -97,29 +97,25 @@ modules:
           project-id: 11526
           url-template: https://github.com/fmtlib/fmt/archive/$version.tar.gz
 
-  # Required so we can use wxWidgets with openGL integration
-  - shared-modules/glu/glu-9.json
-
   - name: wxWidgets
     config-opts:
       - --with-gtk=3
       - --with-opengl
     sources:
       - type: archive
-        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.8.1/wxWidgets-3.2.8.1.tar.bz2
-        sha256: ad0cf6c18815dcf1a6a89ad3c3d21a306cd7b5d99a602f77372ef1d92cb7d756
+        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.3.1/wxWidgets-3.3.1.tar.bz2
+        sha256: f936c8d694f9c49a367a376f99c751467150a4ed7cbf8f4723ef19b2d2d9998d
         x-checker-data:
           type: anitya
           project-id: 5150
           url-template: https://github.com/wxWidgets/wxWidgets/releases/download/v$version/wxWidgets-$version.tar.bz2
-          # 0ad a27.1 fails to build against v3.3
 
   - name: 0ad
     buildsystem: simple
     build-options:
       append-path: /usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm21/bin
       env:
-        TAR_OPTIONS: "--no-same-owner"
+        TAR_OPTIONS: --no-same-owner
     build-commands:
       - rustc --version
       - python3 --version
@@ -162,3 +158,4 @@ modules:
           - patches/0001-Fix-search-path-for-pyrogenesis-Modify-launcher-scri.patch
           - patches/0002-Disable-SpiderMonkey-s-debug-build.patch
           - patches/0003-build-with-boost-1.89.patch
+          - patches/0004-build-with-wxwidgets-3.3.patch
