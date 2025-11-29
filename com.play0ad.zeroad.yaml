@@ -28,15 +28,14 @@ modules:
       - ./b2 headers
       - ./b2 install
     sources:
-      - sha256: 46d9d2c06637b219270877c9e16155cbd015b6dc84349af064c088e9b5b12f7b
+      - sha256: 85a33fa22621b4f314f8e85e1a5e2a9363d22e4f4992925d4bb3bc631b5a0c7a
         type: archive
-        url: https://archives.boost.io/release/1.88.0/source/boost_1_88_0.tar.bz2
+        url: https://archives.boost.io/release/1.89.0/source/boost_1_89_0.tar.bz2
         x-checker-data:
           type: anitya
           project-id: 6845
           stable-only: true
           url-template: https://archives.boost.io/release/$version/source/boost_${major}_${minor}_${patch}.tar.bz2
-          # 0ad a27.1 fails to build against v1.89
 
   - name: gloox
     sources:
@@ -91,15 +90,12 @@ modules:
       - '*'
     sources:
       - type: archive
-        url: https://github.com/fmtlib/fmt/archive/12.0.0.tar.gz
-        sha256: aa3e8fbb6a0066c03454434add1f1fc23299e85758ceec0d7d2d974431481e40
+        url: https://github.com/fmtlib/fmt/archive/12.1.0.tar.gz
+        sha256: ea7de4299689e12b6dddd392f9896f08fb0777ac7168897a244a6d6085043fea
         x-checker-data:
           type: anitya
           project-id: 11526
           url-template: https://github.com/fmtlib/fmt/archive/$version.tar.gz
-
-  # Required so we can use wxWidgets with openGL integration
-  - shared-modules/glu/glu-9.json
 
   - name: wxWidgets
     config-opts:
@@ -107,20 +103,19 @@ modules:
       - --with-opengl
     sources:
       - type: archive
-        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.2.8.1/wxWidgets-3.2.8.1.tar.bz2
-        sha256: ad0cf6c18815dcf1a6a89ad3c3d21a306cd7b5d99a602f77372ef1d92cb7d756
+        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.3.1/wxWidgets-3.3.1.tar.bz2
+        sha256: f936c8d694f9c49a367a376f99c751467150a4ed7cbf8f4723ef19b2d2d9998d
         x-checker-data:
           type: anitya
           project-id: 5150
           url-template: https://github.com/wxWidgets/wxWidgets/releases/download/v$version/wxWidgets-$version.tar.bz2
-          # 0ad a27.1 fails to build against v3.3
 
   - name: 0ad
     buildsystem: simple
     build-options:
       append-path: /usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm21/bin
       env:
-        TAR_OPTIONS: "--no-same-owner"
+        TAR_OPTIONS: --no-same-owner
     build-commands:
       - rustc --version
       - python3 --version
@@ -162,3 +157,5 @@ modules:
         paths:
           - patches/0001-Fix-search-path-for-pyrogenesis-Modify-launcher-scri.patch
           - patches/0002-Disable-SpiderMonkey-s-debug-build.patch
+          - patches/0003-build-with-boost-1.89.patch
+          - patches/0004-build-with-wxwidgets-3.3.patch
