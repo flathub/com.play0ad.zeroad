@@ -141,5 +141,3 @@ modules:
           - --force
         paths:
           - patches/0001-Fix-search-path-for-pyrogenesis-Modify-launcher-scri.patch
-          - patches/0003-build-with-boost-1.89.patch
-          - patches/0004-build-with-wxwidgets-3.3.patch
