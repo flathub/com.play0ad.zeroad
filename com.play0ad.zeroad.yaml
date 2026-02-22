@@ -140,4 +140,3 @@ modules:
           - -l
           - --force
         paths:
-          - patches/0001-Fix-search-path-for-pyrogenesis-Modify-launcher-scri.patch
