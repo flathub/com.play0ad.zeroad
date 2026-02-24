@@ -134,9 +134,3 @@ modules:
           type: anitya
           project-id: 5830
           url-template: https://releases.wildfiregames.com/0ad-$version-unix-data.tar.xz
-      - type: patch
-        strip-components: 1
-        options:
-          - -l
-          - --force
-        paths:
