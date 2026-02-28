@@ -1,34 +1,59 @@
-From 7c3d7c7b562d6efc6abeb99487efe3bb5cff922f Mon Sep 17 00:00:00 2001
+From b22cb8813dd852b150384d389eb02e18229557fe Mon Sep 17 00:00:00 2001
 From: Stan <stan@wildfiregames.com>
-Date: Mon, 10 Feb 2025 21:24:51 +0100
-Subject: [PATCH 08/10] Disable SpiderMonkey's debug build
+Date: Sat, 28 Feb 2026 18:11:16 +0100
+Subject: [PATCH 2/2] Disable SpiderMonkey's debug build
 
 ---
- libraries/source/spidermonkey/build.sh | 18 ------------------
- 1 file changed, 18 deletions(-)
+ libraries/source/spidermonkey/build.sh | 35 ++------------------------
+ 1 file changed, 2 insertions(+), 33 deletions(-)
 
 diff --git a/libraries/source/spidermonkey/build.sh b/libraries/source/spidermonkey/build.sh
-index 0dc66e0184..1c86ea4dbc 100755
+index 62716f58cc..74c303dcd9 100755
 --- a/libraries/source/spidermonkey/build.sh
 +++ b/libraries/source/spidermonkey/build.sh
-@@ -126,16 +126,6 @@ tar xfJ "${FOLDER}.tar.xz"
+@@ -150,17 +150,6 @@ rm -Rf "${FOLDER}"
  		${CTARGET:+--target=${CTARGET}}"
  
  	# Build
 -	# Debug (broken on FreeBSD)
 -	if [ "${OS}" != "FreeBSD" ]; then
+-		# shellcheck disable=SC2086
 -		MOZCONFIG="$(pwd)/../mozconfig" \
 -		MOZCONFIG_OPTIONS="${CONF_OPTS} \
 -			--enable-debug \
 -			--disable-optimize \
 -			--enable-gczeal" \
 -		BUILD_DIR="build-debug" \
--			./mach build "${JOBS}"
+-			./mach build ${JOBS}
 -	fi
  	# Release
+ 	# shellcheck disable=SC2086
  	MOZCONFIG="$(pwd)/../mozconfig" \
- 	MOZCONFIG_OPTIONS="${CONF_OPTS} \
-@@ -188,11 +178,6 @@ fi
+@@ -171,7 +160,7 @@ rm -Rf "${FOLDER}"
+ )
+ 
+ # install
+-rm -Rf bin include-debug include-release lib
++rm -Rf bin include-release lib
+ 
+ mkdir bin lib
+ 
+@@ -194,27 +183,17 @@ if [ "${OS}" = "Windows_NT" ]; then
+ 	# Bug #776126
+ 	# SpiderMonkey uses a tweaked zlib when building, and it wrongly copies its own files to include dirs
+ 	# afterwards, so we have to remove them to not have them conflicting with the regular zlib
+-	(
+-		cd "${FOLDER}"/build-debug/dist/include
+-		rm -f mozzconf.h zconf.h zlib.h
+-	)
+ 	(
+ 		cd "${FOLDER}"/build-release/dist/include
+ 		rm -f mozzconf.h zconf.h zlib.h
+ 	)
+ fi
+ 
+-# js-config.h is different for debug and release builds, so we need different include directories for both
++# Copy release build includes
  mkdir include-release
  cp -R -L "${FOLDER}"/build-release/dist/include/* include-release/
  
@@ -38,14 +63,33 @@ index 0dc66e0184..1c86ea4dbc 100755
 -fi
 -
  # These align the ligns below, making it easier to check for mistakes.
- DEB="debug"
+-DEB="debug"
  REL="release"
-@@ -220,9 +205,6 @@ elif [ "${OS}" = "Windows_NT" ]; then
+ 
+ # Fetch the jsrust static library. Path is grepped from the build file as it varies by rust toolset.
+@@ -223,26 +202,16 @@ cp -L "${rust_path}" "lib/${LIB_PREFIX}${LIB_NAME}-rust${STATIC_LIB_SUFFIX}"
+ 
+ if [ "${OS}" = "Darwin" ]; then
+ 	# On MacOS, copy the static libraries only.
+-	cp -L "${FOLDER}/build-${DEB}/js/src/build/${LIB_PREFIX}js_static${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-${DEB}${LIB_SUFFIX}"
+ 	cp -L "${FOLDER}/build-${REL}/js/src/build/${LIB_PREFIX}js_static${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-${REL}${LIB_SUFFIX}"
+ elif [ "${OS}" = "Windows_NT" ]; then
+ 	# Windows needs DLLs to binaries/, static stubs to lib/ and debug symbols
+-	cp -L "${FOLDER}/build-${DEB}/dist/bin/${LIB_PREFIX}${LIB_NAME}-${DEB}${LIB_SUFFIX}" "bin/${LIB_PREFIX}${LIB_NAME}-${DEB}${LIB_SUFFIX}"
+ 	cp -L "${FOLDER}/build-${REL}/dist/bin/${LIB_PREFIX}${LIB_NAME}-${REL}${LIB_SUFFIX}" "bin/${LIB_PREFIX}${LIB_NAME}-${REL}${LIB_SUFFIX}"
+-	cp -L "${FOLDER}/build-${DEB}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${DEB}${STATIC_LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-${DEB}${STATIC_LIB_SUFFIX}"
+ 	cp -L "${FOLDER}/build-${REL}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${REL}${STATIC_LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-${REL}${STATIC_LIB_SUFFIX}"
+ 	# Copy debug symbols as well.
+-	cp -L "${FOLDER}/build-${DEB}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${DEB}.pdb" "bin/${LIB_PREFIX}${LIB_NAME}-${DEB}.pdb"
+ 	cp -L "${FOLDER}/build-${REL}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${REL}.pdb" "bin/${LIB_PREFIX}${LIB_NAME}-${REL}.pdb"
+-	# Copy the debug jsrust library.
+-	rust_path="${FOLDER}/build-debug/$(grep jsrust "${FOLDER}/build-debug/js/src/build/backend.mk" | cut -d / -f 2-)"
+-	cp -L "${rust_path}" "lib/${LIB_PREFIX}${LIB_NAME}-rust-debug${STATIC_LIB_SUFFIX}"
  else
  	# Copy shared libs to lib/, they will also be copied to binaries/system, so the compiler and executable (resp.) can find them.
- 	cp -L "${FOLDER}/build-${REL}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${REL}${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-${REL}${LIB_SUFFIX}"
+ 	cp -L "${FOLDER}/build-${REL}/dist/bin/${LIB_PREFIX}${LIB_NAME}-${REL}${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-${REL}${LIB_SUFFIX}"
 -	if [ "${OS}" != "FreeBSD" ]; then
--		cp -L "${FOLDER}/build-${DEB}/js/src/build/${LIB_PREFIX}${LIB_NAME}-${DEB}${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-${DEB}${LIB_SUFFIX}"
+-		cp -L "${FOLDER}/build-${DEB}/dist/bin/${LIB_PREFIX}${LIB_NAME}-${DEB}${LIB_SUFFIX}" "lib/${LIB_PREFIX}${LIB_NAME}-${DEB}${LIB_SUFFIX}"
 -	fi
  fi
  
