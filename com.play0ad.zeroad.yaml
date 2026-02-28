@@ -95,6 +95,24 @@ modules:
           project-id: 5150
           url-template: https://github.com/wxWidgets/wxWidgets/releases/download/v$version/wxWidgets-$version.tar.bz2
 
+  - name: cbindgen
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/bin
+      - cp cbindgen-* /app/bin/cbindgen || cp cbindgen /app/bin/
+      - chmod +x /app/bin/cbindgen
+    sources:
+      - type: file
+        url: https://github.com/mozilla/cbindgen/releases/download/0.29.0/cbindgen-ubuntu22.04
+        sha256: 2cc8a248e12632a0249f17d7370ad4a38c98292bdf7bb1357f737f8b6e8cc435
+        only-arches:
+          - x86_64
+      - type: file
+        url: https://github.com/mozilla/cbindgen/releases/download/0.29.0/cbindgen-ubuntu22.04-aarch64
+        sha256: a9f4b5322f9ea7b8637984e385ec1c73c8e4e42faf2818da85f87ab77a356ddc
+        only-arches:
+          - aarch64
+
   - name: 0ad
     buildsystem: simple
     build-options:
