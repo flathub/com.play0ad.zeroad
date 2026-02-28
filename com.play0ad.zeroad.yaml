@@ -160,3 +160,4 @@ modules:
         paths:
           - patches/0001-Fix-search-path-for-pyrogenesis-Modify-launcher-scri.patch
           - patches/0002-Disable-SpiderMonkey-s-debug-build.patch
+          - patches/0003-Add-vcs-browser-to-appdata.patch
