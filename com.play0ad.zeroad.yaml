@@ -14,7 +14,8 @@ finish-args:
   - --device=dri
   - --socket=pulseaudio
   - --share=network
-  - --env=SDL_VIDEODRIVER=wayland,x11
+  - --socket=wayland
+  - --socket=fallback-x11
 cleanup:
   - /include
   - /lib/pkgconfig
@@ -95,6 +96,24 @@ modules:
           project-id: 5150
           url-template: https://github.com/wxWidgets/wxWidgets/releases/download/v$version/wxWidgets-$version.tar.bz2
 
+  - name: cbindgen
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/bin
+      - cp cbindgen-* /app/bin/cbindgen || cp cbindgen /app/bin/
+      - chmod +x /app/bin/cbindgen
+    sources:
+      - type: file
+        url: https://github.com/mozilla/cbindgen/releases/download/0.29.0/cbindgen-ubuntu22.04
+        sha256: 2cc8a248e12632a0249f17d7370ad4a38c98292bdf7bb1357f737f8b6e8cc435
+        only-arches:
+          - x86_64
+      - type: file
+        url: https://github.com/mozilla/cbindgen/releases/download/0.29.0/cbindgen-ubuntu22.04-aarch64
+        sha256: a9f4b5322f9ea7b8637984e385ec1c73c8e4e42faf2818da85f87ab77a356ddc
+        only-arches:
+          - aarch64
+
   - name: 0ad
     buildsystem: simple
     build-options:
@@ -121,15 +140,15 @@ modules:
       - mv binaries/data/* /app/share/games/0ad
     sources:
       - type: archive
-        url: https://releases.wildfiregames.com/0ad-0.27.1-unix-build.tar.xz
-        sha256: a0a5355eeb5968d24f283770736150d974dafecba07754d4662707dc17016bfb
+        url: https://releases.wildfiregames.com/0ad-0.28.0-unix-build.tar.xz
+        sha256: 27e217755ef76a922fe58dbf593d96e54b6ed2375d23f548c35619aa6bd5a42a
         x-checker-data:
           type: anitya
           project-id: 5830
           url-template: https://releases.wildfiregames.com/0ad-$version-unix-build.tar.xz
       - type: archive
-        url: https://releases.wildfiregames.com/0ad-0.27.1-unix-data.tar.xz
-        sha256: 837e2d6ddf138b025fc02017245d7581a4bb84fd94b42c0e605d321b7017a998
+        url: https://releases.wildfiregames.com/0ad-0.28.0-unix-data.tar.xz
+        sha256: e844b30ae2102c47e0a4fff2f0e0ef05ba0cebb1890aa72276fa12457c39526f
         x-checker-data:
           type: anitya
           project-id: 5830
@@ -142,5 +161,4 @@ modules:
         paths:
           - patches/0001-Fix-search-path-for-pyrogenesis-Modify-launcher-scri.patch
           - patches/0002-Disable-SpiderMonkey-s-debug-build.patch
-          - patches/0003-build-with-boost-1.89.patch
-          - patches/0004-build-with-wxwidgets-3.3.patch
+          - patches/0003-Add-vcs-browser-to-appdata.patch
