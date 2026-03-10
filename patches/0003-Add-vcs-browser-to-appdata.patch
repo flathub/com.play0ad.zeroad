@@ -1,0 +1,12 @@
+diff --git a/build/resources/0ad.appdata.xml b/build/resources/0ad.appdata.xml
+index b7c725dd66..5fc6b4540d 100644
+--- a/build/resources/0ad.appdata.xml
++++ b/build/resources/0ad.appdata.xml
+@@ -39,6 +39,7 @@
+   <url type="bugtracker">https://gitea.wildfiregames.com/0ad/0ad/issues/</url>
+   <url type="translate">https://gitea.wildfiregames.com/0ad/0ad/wiki/Localization</url>
+   <url type="donation">https://play0ad.com/community/donate/</url>
++  <url type="vcs-browser">https://gitea.wildfiregames.com/0ad/0ad</url>
+   <releases>
+     <release version="0.28.0" date="2026-02-05">
+         <url type="details">https://play0ad.com/new-release-0-a-d-release-28-boiorix/</url>

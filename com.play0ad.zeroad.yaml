@@ -1,11 +1,11 @@
 ---
 app-id: com.play0ad.zeroad
 runtime: org.freedesktop.Platform
-runtime-version: '24.08'
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.rust-stable
-  - org.freedesktop.Sdk.Extension.llvm18
+  - org.freedesktop.Sdk.Extension.llvm21
 command: 0ad
 finish-args:
   - --socket=wayland
@@ -28,9 +28,9 @@ modules:
       - ./b2 headers
       - ./b2 install
     sources:
-      - sha256: 46d9d2c06637b219270877c9e16155cbd015b6dc84349af064c088e9b5b12f7b
+      - sha256: 49551aff3b22cbc5c5a9ed3dbc92f0e23ea50a0f7325b0d198b705e8ee3fc305
         type: archive
-        url: https://archives.boost.io/release/1.88.0/source/boost_1_88_0.tar.bz2
+        url: https://archives.boost.io/release/1.90.0/source/boost_1_90_0.tar.bz2
         x-checker-data:
           type: anitya
           project-id: 6845
@@ -75,76 +75,50 @@ modules:
   - name: libsodium
     sources:
       - type: archive
-        url: https://github.com/jedisct1/libsodium/archive/1.0.18-RELEASE.tar.gz
-        sha256: b7292dd1da67a049c8e78415cd498ec138d194cfdb302e716b08d26b80fecc10
+        url: https://github.com/jedisct1/libsodium/releases/download/1.0.20-RELEASE/libsodium-1.0.20.tar.gz
+        sha256: ebb65ef6ca439333c2bb41a0c1990587288da07f6c7fd07cb3a18cc18d30ce19
         x-checker-data:
           type: anitya
           project-id: 1728
-          url-template: https://github.com/jedisct1/libsodium/archive/$version.tar.gz
-
-  - name: fmt
-    buildsystem: cmake-ninja
-    config-opts:
-      - -DFMT_TEST=Off
-    cleanup:
-      - '*'
-    sources:
-      - type: archive
-        url: https://github.com/fmtlib/fmt/archive/11.2.0.tar.gz
-        sha256: bc23066d87ab3168f27cef3e97d545fa63314f5c79df5ea444d41d56f962c6af
-        x-checker-data:
-          type: anitya
-          project-id: 11526
-          url-template: https://github.com/fmtlib/fmt/archive/$version.tar.gz
-
-  - name: autoconf-2.13
-    config-opts:
-      - --program-suffix=-2.13
-    cleanup:
-      - '*'
-    sources:
-      - type: archive
-        url: https://ftp.gnu.org/gnu/autoconf/autoconf-2.13.tar.gz
-        sha256: f0611136bee505811e9ca11ca7ac188ef5323a8e2ef19cffd3edb3cf08fd791e
-
-  # Required so we can use wxWidgets with openGL integration
-  - shared-modules/glu/glu-9.json
+          url-template: https://github.com/jedisct1/libsodium/releases/download/$version-RELEASE/libsodium-$version.tar.gz
 
   - name: wxWidgets
-    rm-configure: true
     config-opts:
       - --with-gtk=3
       - --with-opengl
-    build-options:
-      cxxflags: -std=c++11
     sources:
       - type: archive
-        url: https://github.com/wxWidgets/wxWidgets/archive/v3.2.8.1.tar.gz
-        sha256: 65654b00e8d6901f53cee31b0175720620a4153f32bd95980d03aa4424a26978
+        url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.3.1/wxWidgets-3.3.1.tar.bz2
+        sha256: f936c8d694f9c49a367a376f99c751467150a4ed7cbf8f4723ef19b2d2d9998d
         x-checker-data:
           type: anitya
           project-id: 5150
-          url-template: https://github.com/wxWidgets/wxWidgets/archive/v$version.tar.gz
-      - type: archive  # commit taken from wxWidget's git submodule
-        url: https://github.com/wxWidgets/Catch/archive/ee4acb6ae6e32a02bc012d197aa82b1ca7a493ab.zip
-        sha256: cdc951487c8c18d90eb0ad3f997a4845e045584c661281fd94de66f14ada4ba0
-        dest: 3rdparty/catch
-      - type: archive  # commit taken from wxWidget's git submodule
-        url: https://github.com/wxWidgets/nanosvg/archive/ccdb1995134d340a93fb20e3a3d323ccb3838dd0.zip
-        sha256: d45fb75b9652f45f3ab4e23e76d77c4a4db02939702d36def6fcd244fb0a44c6
-        dest: 3rdparty/nanosvg
-      - type: script
-        dest-filename: autogen.sh
-        commands:
-          - cp -p /usr/share/automake-*/config.{sub,guess} .
-          - autoconf -f -B build/autoconf_prepend-include
+          url-template: https://github.com/wxWidgets/wxWidgets/releases/download/v$version/wxWidgets-$version.tar.bz2
+
+  - name: cbindgen
+    buildsystem: simple
+    build-commands:
+      - mkdir -p /app/bin
+      - cp cbindgen-* /app/bin/cbindgen || cp cbindgen /app/bin/
+      - chmod +x /app/bin/cbindgen
+    sources:
+      - type: file
+        url: https://github.com/mozilla/cbindgen/releases/download/0.29.0/cbindgen-ubuntu22.04
+        sha256: 2cc8a248e12632a0249f17d7370ad4a38c98292bdf7bb1357f737f8b6e8cc435
+        only-arches:
+          - x86_64
+      - type: file
+        url: https://github.com/mozilla/cbindgen/releases/download/0.29.0/cbindgen-ubuntu22.04-aarch64
+        sha256: a9f4b5322f9ea7b8637984e385ec1c73c8e4e42faf2818da85f87ab77a356ddc
+        only-arches:
+          - aarch64
 
   - name: 0ad
     buildsystem: simple
     build-options:
-      append-path: /usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm18/bin
+      append-path: /usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm21/bin
       env:
-        TAR_OPTIONS: "--no-same-owner"
+        TAR_OPTIONS: --no-same-owner
     build-commands:
       - rustc --version
       - python3 --version
@@ -165,15 +139,15 @@ modules:
       - mv binaries/data/* /app/share/games/0ad
     sources:
       - type: archive
-        url: https://releases.wildfiregames.com/0ad-0.27.1-unix-build.tar.xz
-        sha1: 1dbb863b0062298ed1def8cd53a243bc2e7c9f76
+        url: https://releases.wildfiregames.com/0ad-0.28.0-unix-build.tar.xz
+        sha256: 27e217755ef76a922fe58dbf593d96e54b6ed2375d23f548c35619aa6bd5a42a
         x-checker-data:
           type: anitya
           project-id: 5830
           url-template: https://releases.wildfiregames.com/0ad-$version-unix-build.tar.xz
       - type: archive
-        url: https://releases.wildfiregames.com/0ad-0.27.1-unix-data.tar.xz
-        sha1: 36dc2f6dc9df3efa80c4eade7b87ae254cb46c7d
+        url: https://releases.wildfiregames.com/0ad-0.28.0-unix-data.tar.xz
+        sha256: e844b30ae2102c47e0a4fff2f0e0ef05ba0cebb1890aa72276fa12457c39526f
         x-checker-data:
           type: anitya
           project-id: 5830
@@ -186,3 +160,4 @@ modules:
         paths:
           - patches/0001-Fix-search-path-for-pyrogenesis-Modify-launcher-scri.patch
           - patches/0002-Disable-SpiderMonkey-s-debug-build.patch
+          - patches/0003-Add-vcs-browser-to-appdata.patch

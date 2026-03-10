@@ -1,8 +1,8 @@
-From 30f099d5271e15fe43b6cff0e6948cf38acc8322 Mon Sep 17 00:00:00 2001
+From 039739eef0b386dec1e2c1f8f484d4bd76a79d97 Mon Sep 17 00:00:00 2001
 From: Vincent Cheng <vcheng@debian.org>
 Date: Sun, 27 Apr 2025 17:22:15 +0200
-Subject: [PATCH 03/10] Fix search path for pyrogenesis Modify launcher script
- to execute /usr/games/pyrogenesis if /usr/games is not in the user's $PATH.
+Subject: [PATCH 1/2] Fix search path for pyrogenesis Modify launcher script to
+ execute /usr/games/pyrogenesis if /usr/games is not in the user's $PATH.
 
 ---
  build/resources/0ad.sh | 3 +++
