@@ -81,6 +81,8 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ([\d.]+)-RELEASE
+      - type: patch
+        path: patches/libsodium-fix-aarch64.patch
 
   - name: wxWidgets
     sources:
