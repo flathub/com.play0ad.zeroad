@@ -1,11 +1,10 @@
----
 app-id: com.play0ad.zeroad
 runtime: org.freedesktop.Platform
 runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.rust-stable
-  - org.freedesktop.Sdk.Extension.llvm21
+  - org.freedesktop.Sdk.Extension.llvm22
 command: 0ad
 finish-args:
   - --socket=wayland
@@ -103,20 +102,28 @@ modules:
       - chmod +x /app/bin/cbindgen
     sources:
       - type: file
-        url: https://github.com/mozilla/cbindgen/releases/download/0.29.0/cbindgen-ubuntu22.04
-        sha256: 2cc8a248e12632a0249f17d7370ad4a38c98292bdf7bb1357f737f8b6e8cc435
+        url: https://github.com/mozilla/cbindgen/releases/download/0.29.2/cbindgen-ubuntu22.04
+        sha256: a513332aff361143077ac3680c424fa9569c4310d3098fe3a1308c201d2ea23b
         only-arches:
           - x86_64
+        x-checker-data:
+          type: anitya
+          project-id: 16690
+          url-template: https://github.com/mozilla/cbindgen/releases/download/$version/cbindgen-ubuntu22.04
       - type: file
-        url: https://github.com/mozilla/cbindgen/releases/download/0.29.0/cbindgen-ubuntu22.04-aarch64
-        sha256: a9f4b5322f9ea7b8637984e385ec1c73c8e4e42faf2818da85f87ab77a356ddc
+        url: https://github.com/mozilla/cbindgen/releases/download/0.29.2/cbindgen-ubuntu22.04-aarch64
+        sha256: a513332aff361143077ac3680c424fa9569c4310d3098fe3a1308c201d2ea23b
         only-arches:
           - aarch64
+        x-checker-data:
+          type: anitya
+          project-id: 16690
+          url-template: https://github.com/mozilla/cbindgen/releases/download/$version/cbindgen-ubuntu22.04-aarch64
 
   - name: 0ad
     buildsystem: simple
     build-options:
-      append-path: /usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm21/bin
+      append-path: /usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm22/bin
       env:
         TAR_OPTIONS: --no-same-owner
     build-commands:
