@@ -101,7 +101,7 @@ modules:
       - cargo --offline build --release --verbose
       - install -Dm 755 target/release/cbindgen -t /app/bin
     build-options:
-      append-path: /usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm22/bin
+      append-path: /usr/lib/sdk/rust-stable/bin
       env:
         CARGO_HOME: /run/build/cbindgen/cargo
     cleanup:
@@ -110,10 +110,10 @@ modules:
       - type: git
         url: https://github.com/mozilla/cbindgen.git
         tag: v0.29.2
+        commit: 76f41c090c0587d940a0ef81a41c8b995f074926
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
-        commit: 76f41c090c0587d940a0ef81a41c8b995f074926
       - cbindgen-sources.json
 
   - name: 0ad
