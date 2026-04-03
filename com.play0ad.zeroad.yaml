@@ -73,13 +73,13 @@ modules:
 
   - name: libsodium
     sources:
-      - type: archive
-        url: https://github.com/jedisct1/libsodium/releases/download/1.0.20-RELEASE/libsodium-1.0.20.tar.gz
-        sha256: ebb65ef6ca439333c2bb41a0c1990587288da07f6c7fd07cb3a18cc18d30ce19
+      - type: git # naming of release tarballs breaks f-e-d-c
+        url: https://github.com/jedisct1/libsodium.git
+        tag: 1.0.21-RELEASE
+        commit: d24faf56214469b354b01c8ba36257e04737101e
         x-checker-data:
-          type: anitya
-          project-id: 1728
-          url-template: https://github.com/jedisct1/libsodium/releases/download/$version-RELEASE/libsodium-$version.tar.gz
+          type: git
+          tag-pattern: ([\d.]+)-RELEASE
 
   - name: wxWidgets
     config-opts:
