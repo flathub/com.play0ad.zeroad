@@ -97,28 +97,24 @@ modules:
   - name: cbindgen
     buildsystem: simple
     build-commands:
-      - mkdir -p /app/bin
-      - cp cbindgen-* /app/bin/cbindgen || cp cbindgen /app/bin/
-      - chmod +x /app/bin/cbindgen
+      - cargo --offline fetch --manifest-path Cargo.toml --verbose
+      - cargo --offline build --release --verbose
+      - install -Dm 755 target/release/cbindgen -t /app/bin
+    build-options:
+      append-path: /app/lib/rust/bin
+      env:
+        CARGO_HOME: /run/build/cbindgen/cargo
+    cleanup:
+      - '*'
     sources:
-      - type: file
-        url: https://github.com/mozilla/cbindgen/releases/download/0.29.2/cbindgen-ubuntu22.04
-        sha256: a513332aff361143077ac3680c424fa9569c4310d3098fe3a1308c201d2ea23b
-        only-arches:
-          - x86_64
+      - type: git
+        url: https://github.com/mozilla/cbindgen.git
+        tag: v0.29.2
         x-checker-data:
-          type: anitya
-          project-id: 16690
-          url-template: https://github.com/mozilla/cbindgen/releases/download/$version/cbindgen-ubuntu22.04
-      - type: file
-        url: https://github.com/mozilla/cbindgen/releases/download/0.29.2/cbindgen-ubuntu22.04-aarch64
-        sha256: 6ca3831925e7efcea05e887aaecd5a42feb70054ba91581cf8b4065dcfb945a3
-        only-arches:
-          - aarch64
-        x-checker-data:
-          type: anitya
-          project-id: 16690
-          url-template: https://github.com/mozilla/cbindgen/releases/download/$version/cbindgen-ubuntu22.04-aarch64
+          type: git
+          tag-pattern: ^v([\d.]+)$
+        commit: 76f41c090c0587d940a0ef81a41c8b995f074926
+      - cbindgen-sources.json
 
   - name: 0ad
     buildsystem: simple
