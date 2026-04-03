@@ -82,9 +82,6 @@ modules:
           tag-pattern: ([\d.]+)-RELEASE
 
   - name: wxWidgets
-    config-opts:
-      - --with-gtk=3
-      - --with-opengl
     sources:
       - type: archive
         url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.3.2/wxWidgets-3.3.2.tar.bz2
