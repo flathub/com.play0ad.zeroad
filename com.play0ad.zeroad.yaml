@@ -109,7 +109,7 @@ modules:
           url-template: https://github.com/mozilla/cbindgen/releases/download/$version/cbindgen-ubuntu22.04
       - type: file
         url: https://github.com/mozilla/cbindgen/releases/download/0.29.2/cbindgen-ubuntu22.04-aarch64
-        sha256: a513332aff361143077ac3680c424fa9569c4310d3098fe3a1308c201d2ea23b
+        sha256: 6ca3831925e7efcea05e887aaecd5a42feb70054ba91581cf8b4065dcfb945a3
         only-arches:
           - aarch64
         x-checker-data:
