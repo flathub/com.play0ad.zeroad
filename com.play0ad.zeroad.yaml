@@ -101,7 +101,7 @@ modules:
       - cargo --offline build --release --verbose
       - install -Dm 755 target/release/cbindgen -t /app/bin
     build-options:
-      append-path: /app/lib/rust/bin
+      append-path: /usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm22/bin
       env:
         CARGO_HOME: /run/build/cbindgen/cargo
     cleanup:
