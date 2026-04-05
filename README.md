@@ -27,4 +27,4 @@ instead, as it increases the chancdes of a bug getting fixed.
 ## Legal
 
 The source for 0 A.D. Empires Ascendant and the Pyrogenesis Engine
-can be found [here](https://gitea.wildfiregames.com/0ad/0ad).
+can be found [at the upstream gitea](https://gitea.wildfiregames.com/0ad/0ad).

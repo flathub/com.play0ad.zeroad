@@ -5,7 +5,7 @@ runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.rust-stable
-  - org.freedesktop.Sdk.Extension.llvm21
+  - org.freedesktop.Sdk.Extension.llvm22
 command: 0ad
 finish-args:
   - --socket=wayland
@@ -74,18 +74,17 @@ modules:
 
   - name: libsodium
     sources:
-      - type: archive
-        url: https://github.com/jedisct1/libsodium/releases/download/1.0.20-RELEASE/libsodium-1.0.20.tar.gz
-        sha256: ebb65ef6ca439333c2bb41a0c1990587288da07f6c7fd07cb3a18cc18d30ce19
+      - type: git  # naming of release tarballs breaks f-e-d-c
+        url: https://github.com/jedisct1/libsodium.git
+        tag: 1.0.21-RELEASE
+        commit: d24faf56214469b354b01c8ba36257e04737101e
         x-checker-data:
-          type: anitya
-          project-id: 1728
-          url-template: https://github.com/jedisct1/libsodium/releases/download/$version-RELEASE/libsodium-$version.tar.gz
+          type: git
+          tag-pattern: ([\d.]+)-RELEASE
+      - type: patch
+        path: patches/libsodium-fix-aarch64.patch
 
   - name: wxWidgets
-    config-opts:
-      - --with-gtk=3
-      - --with-opengl
     sources:
       - type: archive
         url: https://github.com/wxWidgets/wxWidgets/releases/download/v3.3.2/wxWidgets-3.3.2.tar.bz2
@@ -98,25 +97,29 @@ modules:
   - name: cbindgen
     buildsystem: simple
     build-commands:
-      - mkdir -p /app/bin
-      - cp cbindgen-* /app/bin/cbindgen || cp cbindgen /app/bin/
-      - chmod +x /app/bin/cbindgen
+      - cargo --offline fetch --manifest-path Cargo.toml --verbose
+      - cargo --offline build --release --verbose
+      - install -Dm 755 target/release/cbindgen -t /app/bin
+    build-options:
+      append-path: /usr/lib/sdk/rust-stable/bin
+      env:
+        CARGO_HOME: /run/build/cbindgen/cargo
+    cleanup:
+      - '*'
     sources:
-      - type: file
-        url: https://github.com/mozilla/cbindgen/releases/download/0.29.0/cbindgen-ubuntu22.04
-        sha256: 2cc8a248e12632a0249f17d7370ad4a38c98292bdf7bb1357f737f8b6e8cc435
-        only-arches:
-          - x86_64
-      - type: file
-        url: https://github.com/mozilla/cbindgen/releases/download/0.29.0/cbindgen-ubuntu22.04-aarch64
-        sha256: a9f4b5322f9ea7b8637984e385ec1c73c8e4e42faf2818da85f87ab77a356ddc
-        only-arches:
-          - aarch64
+      - type: git
+        url: https://github.com/mozilla/cbindgen.git
+        tag: v0.29.2
+        commit: 76f41c090c0587d940a0ef81a41c8b995f074926
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
+      - cbindgen-sources.json
 
   - name: 0ad
     buildsystem: simple
     build-options:
-      append-path: /usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm21/bin
+      append-path: /usr/lib/sdk/rust-stable/bin:/usr/lib/sdk/llvm22/bin
       env:
         TAR_OPTIONS: --no-same-owner
     build-commands:
@@ -153,10 +156,6 @@ modules:
           project-id: 5830
           url-template: https://releases.wildfiregames.com/0ad-$version-unix-data.tar.xz
       - type: patch
-        strip-components: 1
-        options:
-          - -l
-          - --force
         paths:
           - patches/0001-Fix-search-path-for-pyrogenesis-Modify-launcher-scri.patch
           - patches/0002-Disable-SpiderMonkey-s-debug-build.patch
