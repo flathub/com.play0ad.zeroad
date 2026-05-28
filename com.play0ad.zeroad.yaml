@@ -106,8 +106,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/mozilla/cbindgen.git
-        tag: v0.29.2
-        commit: 76f41c090c0587d940a0ef81a41c8b995f074926
+        tag: v0.29.3
+        commit: b5f2a978302e86fa06659a945a26c1b8b9aa9b8d
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
