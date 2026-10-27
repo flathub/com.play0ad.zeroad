@@ -1,0 +1,147 @@
+From 7679604d686f8fddf4fc6fba60729babf500b7fc Mon Sep 17 00:00:00 2001
+From: Bowen Ho <bowen951209@gmail.com>
+Date: Wed, 21 Oct 2026 17:12:39 +0800
+Subject: [PATCH] Fix spidermonkey build rust target detection
+
+Spidermonkey fails to build on newer Rust versions(>= 1.98) on
+`x86_64-pc-linux-gnu` or `x86_64-unknown-linux-gnu` targets due to
+target matching ambiguity introduced by new vendor targets.
+
+Fix this by backporting the upstream `detect_rustc_target` snapshot into
+a new patch `FixRustTargetDetection.diff`.
+
+Fixes: https://wildfiregames.com/forum/topic/169615-building-libraries-error-dont-know-how-to-translate-x86_64-pc-linux-gnu-for-rustc
+---
+ .../patches/FixRustTargetDetection.diff       | 103 ++++++++++++++++++
+ .../source/spidermonkey/patches/patch.sh      |   5 +
+ 2 files changed, 108 insertions(+)
+ create mode 100644 libraries/source/spidermonkey/patches/FixRustTargetDetection.diff
+
+diff --git a/libraries/source/spidermonkey/patches/FixRustTargetDetection.diff b/libraries/source/spidermonkey/patches/FixRustTargetDetection.diff
+new file mode 100644
+index 0000000000..c5490d36c0
+--- /dev/null
++++ b/libraries/source/spidermonkey/patches/FixRustTargetDetection.diff
+@@ -0,0 +1,103 @@
++From 03a717979ac27c7aed69eb95ae0b89e6287f965d Mon Sep 17 00:00:00 2001
++From: Bowen Ho <bowen951209@gmail.com>
++Date: Sun, 25 Oct 2026 09:25:31 +0800
++Subject: [PATCH] Fix rust target detection
++
++rustc 1.98 added `*-oe-linux-*` targets, so a host with another vendor, such
++as `aarch64-pld-linux-gnu`, matched both the `unknown` and the `oe` target and
++configure could not pick one.
++
++Update detect_rustc_target from snapshot
++https://github.com/mozilla-firefox/firefox/commit/2905c758c195388b3d371f1b615b1c5a9c6e1226
++
++This can be dropped when we update to spidermonkey 140, where the patch
++was backported.
++---
++ build/moz.configure/rust.configure | 52 ++++++++++++++++++++++--------
++ 1 file changed, 39 insertions(+), 13 deletions(-)
++
++diff --git a/build/moz.configure/rust.configure b/build/moz.configure/rust.configure
++index acac34ec0559..bc62ed1e020f 100644
++--- a/build/moz.configure/rust.configure
+++++ b/build/moz.configure/rust.configure
++@@ -302,19 +302,20 @@ def detect_rustc_target(
++         elif not candidates:
++             return None
++ 
+++        vendor = (
+++            host_or_target.vendor
+++            if any(c.target.vendor == host_or_target.vendor for c in candidates)
+++            else "unknown"
+++        )
+++
++         # We have multiple candidates. There are two cases where we can try to
++         # narrow further down using extra information from the build system.
++-        # - For windows targets, correlate with the C compiler type
+++        # - For windows targets, correlate with the ABI
++         if host_or_target.kernel == "WINNT":
++-            if host_or_target.abi:
++-                if host_or_target.abi == "msvc":
++-                    suffix = "windows-msvc"
++-                elif host_or_target.abi == "mingw":
++-                    suffix = "windows-gnu"
++-            elif compiler_info.type in ("gcc", "clang"):
++-                suffix = "windows-gnu"
++-            else:
+++            if host_or_target.abi == "msvc":
++                 suffix = "windows-msvc"
+++            elif host_or_target.abi == "mingw":
+++                suffix = "windows-gnullvm"
++             narrowed = [
++                 c for c in candidates if c.rust_target.endswith("-{}".format(suffix))
++             ]
++@@ -369,11 +370,19 @@ def detect_rustc_target(
++             else:
++                 suffix = ""
++             for p in prefixes:
++-                for c in candidates:
++-                    if c.rust_target.startswith(
++-                        "{}-".format(p)
++-                    ) and c.rust_target.endswith(suffix):
+++                matches = [
+++                    c
+++                    for c in candidates
+++                    if c.rust_target.startswith("{}-".format(p))
+++                    and c.rust_target.endswith(suffix)
+++                ]
+++                if not matches:
+++                    continue
+++                # As below, correlate on the (normalized) vendor.
+++                for c in matches:
+++                    if c.target.vendor == vendor:
++                         return c.rust_target
+++                return matches[0].rust_target
++ 
++         # See if we can narrow down on the exact alias.
++         # We use the sub_configure_alias to keep support mingw32 triplets as input.
++@@ -394,6 +403,23 @@ def detect_rustc_target(
++         elif narrowed:
++             candidates = narrowed
++ 
+++        # The wasm32-wasi target was renamed to wasm32-wasip1
+++        if host_or_target.raw_os == "wasi":
+++            narrowed = [c for c in candidates if c.target.raw_os == "wasip1"]
+++            if len(narrowed) == 1:
+++                return narrowed[0].rust_target
+++            elif narrowed:
+++                candidates = narrowed
+++
+++        # Correlate on the (normalized) vendor, so vendor-specific targets (e.g.
+++        # the *-oe-linux-gnu targets added in rust 1.98) don't shadow the
+++        # generic ones for aliases whose vendor doesn't match a rust target.
+++        narrowed = [c for c in candidates if c.target.vendor == vendor]
+++        if len(narrowed) == 1:
+++            return narrowed[0].rust_target
+++        elif narrowed:
+++            candidates = narrowed
+++
++         # See if we can narrow down with the raw OS and raw CPU
++         narrowed = [
++             c
++-- 
++2.56.0
++
+diff --git a/libraries/source/spidermonkey/patches/patch.sh b/libraries/source/spidermonkey/patches/patch.sh
+index 8ea5bccf68..0084620abe 100755
+--- a/libraries/source/spidermonkey/patches/patch.sh
++++ b/libraries/source/spidermonkey/patches/patch.sh
+@@ -11,6 +11,11 @@ PATCHES="../patches"
+ # https://bugzilla.mozilla.org/show_bug.cgi?id=1588340
+ patch -p1 <"${PATCHES}"/FixRustLinkage.diff
+ 
++# Fix rustc target detection error on Linux for newer Rust versions (>= 1.98).
++# https://bugzilla.mozilla.org/show_bug.cgi?id=2053518
++# https://bugzilla.mozilla.org/show_bug.cgi?id=2068205
++patch -p1 <"${PATCHES}"/FixRustTargetDetection.diff
++
+ # Differentiate debug/release library names.
+ patch -p1 <"${PATCHES}"/FixLibNames.diff
+ 
+-- 
+2.52.0
+
